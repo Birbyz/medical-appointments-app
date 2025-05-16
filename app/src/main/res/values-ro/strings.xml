@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ProgramăriMedicale</string>
+    <string name="welcome">Bine ai venit!</string>
+
+    <string name="ophthalmologist">Oftalmolog</string>
+    <string name="general_practitioner">Medic de familie</string>
+    <string name="cardiologist">Cardiolog</string>
+    <string name="dermatologist">Dermatolog</string>
+    <string name="pediatrician">Pediatru</string>
+    <string name="surgeon">Chirurg</string>
+    <string name="neurologist">Neurolog</string>
+    <string name="psychiatrist">Psihiatru</string>
+    <string name="orthopedist">Ortoped</string>
+    <string name="oncologist">Oncolog</string>
+</resources>

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MedicalAppointments</string>
+    <string name="welcome">Welcome!</string>
+
+    <string name="ophthalmologist">Ophthalmologist</string>
+    <string name="general_practitioner">General Practitioner</string>
+    <string name="cardiologist">Cardiologist</string>
+    <string name="dermatologist">Dermatologist</string>
+    <string name="pediatrician">Pediatrician</string>
+    <string name="surgeon">Surgeon</string>
+    <string name="neurologist">Neurologist</string>
+    <string name="psychiatrist">Psychiatrist</string>
+    <string name="orthopedist">Orthopedist</string>
+    <string name="oncologist">Oncologist</string>
 </resources>
