@@ -12,4 +12,6 @@
     <string name="psychiatrist">Psychiatrist</string>
     <string name="orthopedist">Orthopedist</string>
     <string name="oncologist">Oncologist</string>
+    <string name="login">Login</string>
+    <string name="go_to_register">Go to register</string>
 </resources>
