@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!--    permisiune de internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+<!--    permisiune de camera-->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+<!--*Spre deosebire de permisiunea de internet, camera are nevoie si de acordul utilizatorului pentru a fi accesata-->
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalAppointments"
         tools:targetApi="31">
+        <!-- activity -> name arata fisierul care contine activitatea respectiva -->
+        <!-- category.LAUNCHER arata faptul ca are categoria de launcher, ii spune aplicatiei activitatea care trebuie sa porneasca atunci cand se lanseaza aplicatia -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
