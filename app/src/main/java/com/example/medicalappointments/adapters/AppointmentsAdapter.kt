@@ -92,7 +92,6 @@ class AppointmentsAdapter(
 
     inner class FollowUpAppointmentViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         fun bind(appointment: FollowUpAppointment) {
-            Log.e("ERROR", "aici follow up")
             // fills up the fields with the appointment's values
             view.findViewById<TextView>(R.id.tv_appointment_title).text = appointment.title
             view.findViewById<TextView>(R.id.tv_appointment_description).text = appointment.description

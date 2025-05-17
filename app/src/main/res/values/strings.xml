@@ -22,4 +22,6 @@
     <string name="regular">Regular</string>
     <string name="follow_up">Follow-up</string>
     <string name="insert_appointment">Insert appointment</string>
+    <string name="get_appointment">Get appointment</string>
+    <string name="unknown">"Unknown"</string>
 </resources>

@@ -5,20 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
-import com.example.medicalappointments.adapters.AppointmentsAdapter
-import com.example.medicalappointments.models.FollowUpAppointment
-import com.example.medicalappointments.models.Pacient
-import com.example.medicalappointments.models.RegularAppointment
-import com.example.medicalappointments.models.SurgeryAppointment
-import com.example.medicalappointments.models.VideoAppointment
-import java.time.LocalDate
-import java.time.LocalDateTime
+import com.example.medicalappointments.adapters.CategoriesAdapter
+import com.example.medicalappointments.data.models.CategoryEntityModel
+import com.example.medicalappointments.data.repositories.CategoryRepository
+import com.example.medicalappointments.models.CategoryType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -34,46 +33,15 @@ class HomeFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_items)
 
-        val appointments = listOf(
-            SurgeryAppointment(
-                title = "Knee Replacement Surgery",
-                pacient = Pacient("George", "Popa", 67, LocalDate.of(1958, 3, 10)),
-                doctor = Doctor("Dr. Radu Iancu", 25, SpecialtyType.ORTHOPEDIST),
-                date = LocalDateTime.of(2025, 6, 15, 8, 0),
-                description = "Scheduled surgery for left knee replacement",
-            ),
-            VideoAppointment(
-                title = "Online Therapy Session",
-                pacient = Pacient("Ioana", "Lungu", 31, LocalDate.of(1993, 1, 25)),
-                doctor = Doctor("Dr. Daria Neagu", 12, SpecialtyType.PSYCHIATRIST),
-                date = LocalDateTime.of(2025, 6, 18, 17, 30),
-                description = "Weekly video consultation for mental health support",
-            ),
-            RegularAppointment(
-                title = "General Health Check-up",
-                pacient = Pacient("Andrei", "Vasilescu", 45, LocalDate.of(1980, 7, 9)),
-                doctor = Doctor("Dr. Mircea Iliescu", 18, SpecialtyType.GENERAL_PRACTITIONER),
-                date = LocalDateTime.of(2025, 6, 12, 10, 0),
-                description = "Routine annual health examination",
-            ),
-            FollowUpAppointment(
-                title = "Post-Op Follow-up",
-                pacient = Pacient("Cristina", "Barbu", 54, LocalDate.of(1971, 10, 3)),
-                doctor = Doctor("Dr. Vlad Petrescu", 22, SpecialtyType.SURGEON),
-                date = LocalDateTime.of(2025, 6, 20, 14, 0),
-                description = "Follow-up appointment after abdominal surgery",
-            ),
-            SurgeryAppointment(
-                title = "Knee Replacement Surgery",
-                pacient = Pacient("George", "Popa", 67, LocalDate.of(1958, 3, 10)),
-                doctor = Doctor("Dr. Radu Iancu", 25, SpecialtyType.ORTHOPEDIST),
-                date = LocalDateTime.of(2025, 6, 15, 8, 0),
-                description = "Scheduled surgery for left knee replacement",
-            )
-        ) //.shuffled()
+        val items = listOf(
+            CategoryType.FOLLOW_UP,
+            CategoryType.VIDEO,
+            CategoryType.SURGERY,
+            CategoryType.REGULAR
+        ).shuffled()
 
-        val adapter = AppointmentsAdapter(appointments) {
-            goToAppointment()
+        val adapter = CategoriesAdapter(items) {
+            direction -> addCategoryIntoDatabase(direction)
         } // {} for unit - lambda fun
 
         val layoutManager = LinearLayoutManager(requireContext())
@@ -85,10 +53,23 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun goToAppointment() {
-        val action = HomeFragmentDirections.actionHomeFragmentToAppointmentsFragment()
+    fun goToAppointments(id: Long) {
+        val action = HomeFragmentDirections.actionHomeFragmentToAppointmentsFragment(id)
 
         findNavController().navigate(action)
+    }
+
+    fun addCategoryIntoDatabase(categoryType: CategoryType) {
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val entity = CategoryEntityModel(
+                    id = categoryType.id.toLong(),
+                    category = categoryType
+                )
+                CategoryRepository.insert(entity)
+            }
+            goToAppointments(categoryType.id.toLong())
+        }
     }
 
 }

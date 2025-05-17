@@ -2,14 +2,21 @@ package com.example.medicalappointments.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.medicalappointments.data.dao.AppointmentDAO
+import com.example.medicalappointments.data.dao.CategoryDAO
 import com.example.medicalappointments.data.models.AppointmentEntityModel
+import com.example.medicalappointments.data.models.CategoryEntityModel
 
 @Database(
-    entities = [AppointmentEntityModel::class],
-    version = 1
+    entities = [AppointmentEntityModel::class, CategoryEntityModel::class],
+    version = 2
 )
 
+@TypeConverters(
+    AppDatabaseConverter::class
+)
 abstract class AppDatabase: RoomDatabase() {
     abstract val appointmentDAO: AppointmentDAO
+    abstract val categoryDAO: CategoryDAO
 }
