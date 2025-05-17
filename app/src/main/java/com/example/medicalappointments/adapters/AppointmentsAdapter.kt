@@ -61,7 +61,6 @@ class AppointmentsAdapter(
 //
 //        returns an instance of the AppointmentViewHolder, basically this method creates it
 //        return AppointmentViewHolder(view)
-        return TODO("Provide the return value")
     }
 
     override fun onBindViewHolder(
