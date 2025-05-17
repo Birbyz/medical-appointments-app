@@ -24,6 +24,15 @@
             android:text="@string/login"
             android:gravity="center"
             />
+        
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_space"
+            android:inputType="textEmailAddress"
+            android:hint="@string/write_your_email_here" />
+
 
 <!--        BUTTON  -->
         <Button

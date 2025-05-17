@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     private fun goToLogInActivity() {
         val intent = Intent(this, ControllerActivity::class.java)
         startActivity(intent)
+        //finish()
     }
 
     private fun changeDirection(){

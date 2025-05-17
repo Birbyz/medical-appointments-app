@@ -23,12 +23,22 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<TextView>(R.id.tv_register).setOnClickListener{
-            goToRegister()
+            val email = view.findViewById<TextView>(R.id.edt_email).text.toString()
+            goToRegister(email)
+        }
+
+        view.findViewById<Button>(R.id.btn_login).setOnClickListener {
+            goToHome()
         }
     }
 
-    private fun goToRegister() {
-        val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+    private fun goToRegister(email: String) {
+        val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment(email)
+        findNavController().navigate(action)
+    }
+
+    private fun goToHome() {
+        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         findNavController().navigate(action)
     }
 }

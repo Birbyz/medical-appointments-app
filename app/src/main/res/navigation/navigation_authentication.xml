@@ -5,6 +5,8 @@
     android:id="@+id/navigation_authentication"
     app:startDestination="@id/loginFragment">
 
+    <include app:graph="@navigation/navigation_home"/>
+
 <!--    LOGIN FRAGMENT-->
     <fragment
         android:id="@+id/loginFragment"
@@ -14,6 +16,13 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+<!--        single top = o singura instanta-->
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:popUpTo="@navigation/navigation_authentication"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:destination="@id/navigation_home" />
     </fragment>
 
 <!--    REGISTER FRAGMENT-->
@@ -21,7 +30,20 @@
         android:id="@+id/registerFragment"
         android:name="com.example.medicalappointments.ui.register.RegisterFragment"
         android:label="RegisterFragment"
-        tools:layout="@layout/fragment_register"/>
+        tools:layout="@layout/fragment_register">
+        <argument
+            app:nullable="false"
+            android:name="email"
+            app:argType="string"
+            />
+        <action
+            android:id="@+id/action_registerFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+
+            app:popUpTo="@navigation/navigation_authentication"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"/>
+    </fragment>
 
 
 
