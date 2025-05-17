@@ -1,5 +1,6 @@
 package com.example.medicalappointments.ui.home
 
+import Doctor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.AppointmentsAdapter
 import com.example.medicalappointments.models.Appointment
-import com.example.medicalappointments.models.Doctor
+import com.example.medicalappointments.models.CategoryType
+import com.example.medicalappointments.models.FollowUpAppointment
 import com.example.medicalappointments.models.Pacient
-import com.example.medicalappointments.models.SpecialtyType
+import com.example.medicalappointments.models.RegularAppointment
+import com.example.medicalappointments.models.SurgeryAppointment
+import com.example.medicalappointments.models.VideoAppointment
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -31,40 +35,40 @@ class HomeFragment : Fragment() {
         val recycleView = view.findViewById<RecyclerView>(R.id.rv_items)
 
         val appointments = listOf(
-            Appointment(
-                title = "Eye Check-up",
-                pacient = Pacient("Alice", "Popescu", 28, LocalDate.of(1997, 4, 12)),
-                doctor = Doctor("Dr. Ion Ionescu", 15, SpecialtyType.OPHTHALMOLOGIST),
-                date = LocalDateTime.of(2025, 5, 20, 10, 30),
-                description = "Routine annual eye examination"
+            SurgeryAppointment(
+                title = "Knee Replacement Surgery",
+                pacient = Pacient("George", "Popa", 67, LocalDate.of(1958, 3, 10)),
+                doctor = Doctor("Dr. Radu Iancu", 25, SpecialtyType.ORTHOPEDIST),
+                date = LocalDateTime.of(2025, 6, 15, 8, 0),
+                description = "Scheduled surgery for left knee replacement",
             ),
-            Appointment(
-                title = "General Consultation",
-                pacient = Pacient("Mihai", "Stan", 35, LocalDate.of(1990, 9, 5)),
-                doctor = Doctor("Dr. Elena Dobre", 10, SpecialtyType.GENERAL_PRACTITIONER),
-                date = LocalDateTime.of(2025, 6, 1, 9, 0),
-                description = "General health check and blood test request"
+            VideoAppointment(
+                title = "Online Therapy Session",
+                pacient = Pacient("Ioana", "Lungu", 31, LocalDate.of(1993, 1, 25)),
+                doctor = Doctor("Dr. Daria Neagu", 12, SpecialtyType.PSYCHIATRIST),
+                date = LocalDateTime.of(2025, 6, 18, 17, 30),
+                description = "Weekly video consultation for mental health support",
             ),
-            Appointment(
-                title = "Heart Health Evaluation",
-                pacient = Pacient("Andreea", "Ilie", 60, LocalDate.of(1965, 11, 23)),
-                doctor = Doctor("Dr. Sorin Marinescu", 20, SpecialtyType.CARDIOLOGIST),
-                date = LocalDateTime.of(2025, 6, 10, 14, 45),
-                description = "Check for arrhythmia symptoms"
+            RegularAppointment(
+                title = "General Health Check-up",
+                pacient = Pacient("Andrei", "Vasilescu", 45, LocalDate.of(1980, 7, 9)),
+                doctor = Doctor("Dr. Mircea Iliescu", 18, SpecialtyType.GENERAL_PRACTITIONER),
+                date = LocalDateTime.of(2025, 6, 12, 10, 0),
+                description = "Routine annual health examination",
             ),
-            Appointment(
-                title = "Skin Allergy Test",
-                pacient = Pacient("Radu", "Tudor", 42, LocalDate.of(1983, 2, 17)),
-                doctor = Doctor("Dr. Laura Grigore", 12, SpecialtyType.DERMATOLOGIST),
-                date = LocalDateTime.of(2025, 5, 22, 11, 15),
-                description = "Evaluate skin reaction to suspected allergens"
+            FollowUpAppointment(
+                title = "Post-Op Follow-up",
+                pacient = Pacient("Cristina", "Barbu", 54, LocalDate.of(1971, 10, 3)),
+                doctor = Doctor("Dr. Vlad Petrescu", 22, SpecialtyType.SURGEON),
+                date = LocalDateTime.of(2025, 6, 20, 14, 0),
+                description = "Follow-up appointment after abdominal surgery",
             ),
-            Appointment(
-                title = "Child Health Review",
-                pacient = Pacient("Maria", "Enache", 7, LocalDate.of(2018, 8, 30)),
-                doctor = Doctor("Dr. Ana Vasilescu", 8, SpecialtyType.PEDIATRICIAN),
-                date = LocalDateTime.of(2025, 6, 5, 16, 0),
-                description = "Routine pediatric check-up"
+            SurgeryAppointment(
+                title = "Knee Replacement Surgery",
+                pacient = Pacient("George", "Popa", 67, LocalDate.of(1958, 3, 10)),
+                doctor = Doctor("Dr. Radu Iancu", 25, SpecialtyType.ORTHOPEDIST),
+                date = LocalDateTime.of(2025, 6, 15, 8, 0),
+                description = "Scheduled surgery for left knee replacement",
             )
         )
 

@@ -1,7 +1,6 @@
 import com.example.medicalappointments.R
 
 class Doctor (
-    open val id: Int,
     var name: String,
     var yearsOfExperience: Int,
     var specialty: SpecialtyType

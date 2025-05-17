@@ -1,5 +1,6 @@
 package com.example.medicalappointments.models
 
+import Doctor
 import java.time.LocalDateTime
 
 data class Appointments(
