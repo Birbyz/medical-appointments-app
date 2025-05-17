@@ -1,6 +1,7 @@
 package com.example.medicalappointments.ui.appointments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ class AppointmentsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.insert_appointment)?.setOnClickListener{
+        view.findViewById<Button>(R.id.btn_insert_appointment)?.setOnClickListener{
             AppointmentRepository.insert(generateRandomAppointment())
         }
     }
@@ -35,6 +36,7 @@ class AppointmentsFragment: Fragment() {
             "Annual Cardiology Evaluation",
             "Routine Pediatric Control"
         )
+        Log.e("CITY", appointmentTitles.random())
 
         return AppointmentEntityModel(title = appointmentTitles.random())
     }

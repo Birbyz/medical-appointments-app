@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/insert_appointment"
+        android:id="@+id/btn_insert_appointment"
         android:text="@string/insert_appointment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

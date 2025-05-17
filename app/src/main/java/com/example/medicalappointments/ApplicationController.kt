@@ -17,6 +17,7 @@ class ApplicationController: Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        initDatabase()
     }
 
     // DATABASE INITIALISATION
