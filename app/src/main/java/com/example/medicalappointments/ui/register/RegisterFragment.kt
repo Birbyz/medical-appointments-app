@@ -33,6 +33,7 @@ class RegisterFragment : Fragment() {
     private fun goToHome() {
         val action = RegisterFragmentDirections.actionRegisterFragmentToNavigationHome()
         findNavController().navigate(action)
+
     }
 
 }

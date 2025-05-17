@@ -42,7 +42,7 @@
             android:id="@+id/action_registerFragment_to_navigation_home"
             app:destination="@id/navigation_home"
 
-            app:popUpTo="@navigation/navigation_authentication"
+            app:popUpTo="@id/navigation_authentication"
             app:popUpToInclusive="true"
             app:launchSingleTop="true"/>
     </fragment>
