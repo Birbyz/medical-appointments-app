@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
@@ -71,7 +72,9 @@ class HomeFragment : Fragment() {
             )
         ) //.shuffled()
 
-        val adapter = AppointmentsAdapter(appointments)
+        val adapter = AppointmentsAdapter(appointments) {
+            goToAppointment()
+        } // {} for unit - lambda fun
 
         val layoutManager = LinearLayoutManager(requireContext())
 
@@ -80,6 +83,12 @@ class HomeFragment : Fragment() {
             this.layoutManager = layoutManager
             this.adapter = adapter
         }
+    }
+
+    fun goToAppointment() {
+        val action = HomeFragmentDirections.actionHomeFragmentToAppointmentsFragment()
+
+        findNavController().navigate(action)
     }
 
 }
