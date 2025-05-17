@@ -12,4 +12,5 @@
     <string name="psychiatrist">Psihiatru</string>
     <string name="orthopedist">Ortoped</string>
     <string name="oncologist">Oncolog</string>
+    <string name="login">Autentificare</string>
 </resources>

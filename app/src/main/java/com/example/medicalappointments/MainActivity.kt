@@ -1,5 +1,6 @@
 package com.example.medicalappointments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     findViewById<Button>(R.id.btn_welcome).setOnClickListener {
-        //goToLogInActivity()
-        changeDirection()
+        goToLogInActivity()
+        //changeDirection()
 
         Log.e("TAG", "SetOnClickListener")
     }
@@ -72,8 +73,9 @@ class MainActivity : AppCompatActivity() {
 
 //    REDIRECT TO LOG IN SCREEN FUNCTION
     private fun goToLogInActivity() {
-        // val intent = Intent(this, LogInActivity::class.java)
-        // startActivity(intent)
+        val intent = Intent(this, ControllerActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun changeDirection(){
