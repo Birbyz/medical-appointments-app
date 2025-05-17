@@ -7,7 +7,7 @@
     android:paddingHorizontal="@dimen/default_space"
     android:paddingBottom="@dimen/default_space"
     android:background="@color/material_dynamic_neutral10">
-    
+
     <TextView
         android:id="@+id/tv_appointment_title"
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
         android:textColor="@color/white"
         tools:text="Appointment Description"
         android:gravity="center"/>
-    
+
     <ImageView
         android:id="@+id/imv_appointment_image"
         android:layout_width="match_parent"

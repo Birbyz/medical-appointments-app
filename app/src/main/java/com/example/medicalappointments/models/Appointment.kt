@@ -25,7 +25,7 @@ data class FollowUpAppointment(
     pacient = pacient,
     doctor = doctor,
     date = date,
-    categoryType = CategoryType.SURGERY
+    categoryType = CategoryType.FOLLOW_UP
 )
 
 data class RegularAppointment(
@@ -34,7 +34,7 @@ data class RegularAppointment(
     override val pacient: Pacient,
     override val doctor: Doctor,
     override val date: LocalDateTime,
-    val imageUrl: String = "https://cdn-icons-png.freepik.com/512/10620/10620193.png"
+    //val imageUrl: String = "https://cdn-icons-png.freepik.com/512/10620/10620193.png"
 ): Appointment(
     title = title,
     description = description,
@@ -50,7 +50,7 @@ data class SurgeryAppointment(
     override val pacient: Pacient,
     override val doctor: Doctor,
     override val date: LocalDateTime,
-    val imageUrl: String = "https://thumbs.dreamstime.com/b/surgery-abdominal-cavity-black-line-icon-surgical-emergency-pictogram-web-page-mobile-app-promo-editable-stroke-surgery-188215511.jpg"
+    //val imageUrl: String = "https://thumbs.dreamstime.com/b/surgery-abdominal-cavity-black-line-icon-surgical-emergency-pictogram-web-page-mobile-app-promo-editable-stroke-surgery-188215511.jpg"
 ): Appointment(
     title = title,
     description = description,
@@ -66,7 +66,7 @@ data class VideoAppointment(
     override val pacient: Pacient,
     override val doctor: Doctor,
     override val date: LocalDateTime,
-    val imageUrl: String = "https://t3.ftcdn.net/jpg/14/07/40/44/360_F_1407404427_CzBG0ZgUxYNMoF7buZmsFHw1DSPkJpMa.jpg"
+    //val imageUrl: String = "https://t3.ftcdn.net/jpg/14/07/40/44/360_F_1407404427_CzBG0ZgUxYNMoF7buZmsFHw1DSPkJpMa.jpg"
 ): Appointment(
     title = title,
     description = description,

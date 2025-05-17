@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.AppointmentsAdapter
-import com.example.medicalappointments.models.Appointment
-import com.example.medicalappointments.models.CategoryType
 import com.example.medicalappointments.models.FollowUpAppointment
 import com.example.medicalappointments.models.Pacient
 import com.example.medicalappointments.models.RegularAppointment
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recycleView = view.findViewById<RecyclerView>(R.id.rv_items)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_items)
 
         val appointments = listOf(
             SurgeryAppointment(
@@ -70,14 +69,14 @@ class HomeFragment : Fragment() {
                 date = LocalDateTime.of(2025, 6, 15, 8, 0),
                 description = "Scheduled surgery for left knee replacement",
             )
-        )
+        ) //.shuffled()
 
         val adapter = AppointmentsAdapter(appointments)
 
         val layoutManager = LinearLayoutManager(requireContext())
 
         // add all params in recycleView (rv)
-        recycleView?.apply {
+        recyclerView.apply {
             this.layoutManager = layoutManager
             this.adapter = adapter
         }

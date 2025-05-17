@@ -1,5 +1,6 @@
 package com.example.medicalappointments.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.medicalappointments.models.RegularAppointment
 import com.example.medicalappointments.models.SurgeryAppointment
 import com.example.medicalappointments.models.VideoAppointment
 import com.example.medicalappointments.utils.extensions.logErrorMessage
+import kotlin.math.log
 
 class AppointmentsAdapter(
     val items: List<Appointment>
@@ -36,25 +38,27 @@ class AppointmentsAdapter(
             // FOLLOW UP
             CategoryType.FOLLOW_UP.id -> {
                 val view: View = inflater.inflate(R.layout.item_follow_up, parent, false)
-                AppointmentViewHolder(view)
+                //        returns an instance of the AppointmentViewHolder, basically this method creates it
+                FollowUpAppointmentViewHolder(view)
+
             }
 
             // REGULAR
             CategoryType.REGULAR.id -> {
                 val view: View = inflater.inflate(R.layout.item_regular, parent, false)
-                AppointmentViewHolder(view)
+                RegularAppointmentViewHolder(view)
             }
 
             // SURGERY
             CategoryType.SURGERY.id -> {
                 val view: View = inflater.inflate(R.layout.item_surgery, parent, false)
-                AppointmentViewHolder(view)
+                SurgeryAppointmentViewHolder(view)
             }
 
             // VIDEO
             CategoryType.VIDEO.id -> {
                 val view: View = inflater.inflate(R.layout.item_video, parent, false)
-                AppointmentViewHolder(view)
+                VideoAppointmentViewHolder(view)
             }
 
             else -> {
@@ -62,11 +66,6 @@ class AppointmentsAdapter(
                 return AppointmentViewHolder(view)
             }
         }
-//        val inflater = LayoutInflater.from(parent.context)
-//        val view = inflater.inflate(R.layout.item_appointment, parent, false)
-//
-//        returns an instance of the AppointmentViewHolder, basically this method creates it
-//        return AppointmentViewHolder(view)
     }
 
     override fun onBindViewHolder(
@@ -77,13 +76,14 @@ class AppointmentsAdapter(
         // also, it returns null in case the array is null
         val item = items.getOrNull(position) ?: return
 
+
         // the holder is the one created in onCreateViewHolder function
         when(holder) {
             is AppointmentViewHolder -> holder.bind(item)
-            is FollowUpAppointmentViewHolder -> (item as? FollowUpAppointment)?. let { holder.bind(it) }
-            is RegularAppointmentViewHolder -> (item as? RegularAppointment)?. let { holder.bind(it) }
-            is SurgeryAppointmentViewHolder -> (item as? SurgeryAppointment)?. let { holder.bind(it) }
-            is VideoAppointmentViewHolder -> (item as? VideoAppointment)?. let { holder.bind(it) }
+            is FollowUpAppointmentViewHolder -> (item as? FollowUpAppointment)?.let { holder.bind(it) }
+            is RegularAppointmentViewHolder -> (item as? RegularAppointment)?.let { holder.bind(it) }
+            is SurgeryAppointmentViewHolder -> (item as? SurgeryAppointment)?.let { holder.bind(it) }
+            is VideoAppointmentViewHolder -> (item as? VideoAppointment)?.let { holder.bind(it) }
         }
 
         "onBindViewHolder; position = $position".logErrorMessage()
@@ -91,6 +91,7 @@ class AppointmentsAdapter(
 
     inner class FollowUpAppointmentViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         fun bind(appointment: FollowUpAppointment) {
+            Log.e("ERROR", "aici follow up")
             // fills up the fields with the appointment's values
             view.findViewById<TextView>(R.id.tv_appointment_title).text = appointment.title
             view.findViewById<TextView>(R.id.tv_appointment_description).text = appointment.description
@@ -105,6 +106,7 @@ class AppointmentsAdapter(
 
     inner class RegularAppointmentViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         fun bind(appointment: RegularAppointment) {
+            Log.e("ERROR", "aici regular")
             // fills up the fields with the appointment's values
             view.findViewById<TextView>(R.id.tv_appointment_title).text = appointment.title
             view.findViewById<TextView>(R.id.tv_appointment_description).text = appointment.description
