@@ -4,7 +4,7 @@ import com.example.medicalappointments.R
 
 data class Doctor (
     var name: String,
-    var age: Int,
+    var yearsOfExperience: Int,
     var specialty: SpecialtyType
 )
 
