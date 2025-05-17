@@ -1,5 +1,6 @@
 package com.example.medicalappointments.models
 
+import Doctor
 import java.time.LocalDateTime
 
 class Appointment (
@@ -7,5 +8,6 @@ class Appointment (
     var pacient: Pacient,
     var doctor: Doctor,
     var date: LocalDateTime,
-    var description: String
+    var description: String,
+    val categoryType: CategoryType
 )
