@@ -13,4 +13,12 @@
     <string name="orthopedist">Ortoped</string>
     <string name="oncologist">Oncolog</string>
     <string name="login">Autentificare</string>
+    <string name="go_to_register">Mergi la înregistrare</string>
+    <string name="register">Înregistrare</string>
+    <string name="home_page">Pagină principală</string>
+    <string name="write_your_email_here">Scrie adresa ta de email aici...</string>
+    <string name="surgery">Operație</string>
+    <string name="video_conference">Videoconferință</string>
+    <string name="regular">Consultație obișnuită</string>
+    <string name="follow_up">Recontrol</string>
 </resources>

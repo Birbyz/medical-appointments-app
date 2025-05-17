@@ -17,4 +17,8 @@
     <string name="register">Register</string>
     <string name="home_page">Home page</string>
     <string name="write_your_email_here">Write your email here...</string>
+    <string name="surgery">Surgery</string>
+    <string name="video_conference">Video Conference</string>
+    <string name="regular">Regular</string>
+    <string name="follow_up">Follow-up</string>
 </resources>

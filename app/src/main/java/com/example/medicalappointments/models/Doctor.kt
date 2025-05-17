@@ -1,10 +1,8 @@
-package com.example.medicalappointments.models
-
 import com.example.medicalappointments.R
 
-data class Doctor (
+class Doctor (
     var name: String,
-    var age: Int,
+    var yearsOfExperience: Int,
     var specialty: SpecialtyType
 )
 
