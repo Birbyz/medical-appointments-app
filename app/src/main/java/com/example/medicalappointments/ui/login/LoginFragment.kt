@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.medicalappointments.BuildConfig
 import com.example.medicalappointments.R
+import com.example.medicalappointments.managers.SharedPrefsManager
 import com.example.medicalappointments.networking.repository.AuthenticationRepository
 import com.example.medicalappointments.utils.extensions.logErrorMessage
 import com.example.medicalappointments.utils.extensions.showToast
@@ -75,6 +76,11 @@ class LoginFragment : Fragment() {
                     AuthenticationRepository.login(email, password)
                 }
                 "Login succes: ${result.token}".showToast(requireContext())
+
+                // TOKEN
+                withContext(Dispatchers.IO) {
+                    SharedPrefsManager.saveAuthToken(result.token)
+                }
 
                 goToHome()
             } catch (e: IOException) {

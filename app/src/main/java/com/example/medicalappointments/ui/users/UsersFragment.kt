@@ -24,8 +24,7 @@ import retrofit2.HttpException
 
 class UsersFragment: Fragment() {
 
-    private val users = mutableListOf<UserModel>()
-    private val adapter = UsersAdapter(users)
+    private val adapter = UsersAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,9 +50,7 @@ class UsersFragment: Fragment() {
                 UserDataRepository.getAllUsers()
             }
 
-            users.clear()
-            users.addAll(result)
-            adapter.notifyItemChanged(0, users.size)
+            adapter.submitList(result)
         }
     }
 
@@ -64,13 +61,8 @@ class UsersFragment: Fragment() {
                     UserRepository.getUsers(1)
                 }
 
-                delay(3000)
-
-                UserDataRepository.insert(result.data)
-
-                users.clear()
-                users.addAll(result.data)
-                adapter.notifyItemChanged(0, users.size)
+                // NEEDS FIX
+                adapter.submitList(result as List<UserModel?>?)
             } catch (e: IOException) {
                 ("Please check your internet connection").showToast(requireContext())
             } catch (e: HttpException) {

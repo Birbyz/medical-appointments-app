@@ -6,7 +6,7 @@ import com.example.medicalappointments.networking.models.LoginAPIRequestModel
 
 object AuthenticationRepository {
     private val authenticationApiService by lazy {
-        RetrofitClient.instance.create(AuthenticationApiService::class.java)
+        RetrofitClient.nonAuthInstance.create(AuthenticationApiService::class.java)
     }
 
     suspend fun login(email: String, password: String) =
