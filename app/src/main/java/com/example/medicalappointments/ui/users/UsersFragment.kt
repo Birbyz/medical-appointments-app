@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.UsersAdapter
 import com.example.medicalappointments.models.UserModel
-import com.example.medicalappointments.networking.repository.AuthenticationRepository
+import com.example.medicalappointments.data.repositories.UserRepository as UserDataRepository
 import com.example.medicalappointments.networking.repository.UserRepository
 import com.example.medicalappointments.utils.extensions.showToast
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
@@ -40,7 +41,20 @@ class UsersFragment: Fragment() {
             this.layoutManager = LinearLayoutManager(this.context)
         }
 
+        getUsersFromDatabase()
         getUsersFromServer()
+    }
+
+    private fun getUsersFromDatabase() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                UserDataRepository.getAllUsers()
+            }
+
+            users.clear()
+            users.addAll(result)
+            adapter.notifyItemChanged(0, users.size)
+        }
     }
 
     private fun getUsersFromServer() {
@@ -49,6 +63,11 @@ class UsersFragment: Fragment() {
                 val result = withContext(Dispatchers.IO) {
                     UserRepository.getUsers(1)
                 }
+
+                delay(3000)
+
+                UserDataRepository.insert(result.data)
+
                 users.clear()
                 users.addAll(result.data)
                 adapter.notifyItemChanged(0, users.size)
