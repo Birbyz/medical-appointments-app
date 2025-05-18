@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -51,6 +52,10 @@ class HomeFragment : Fragment() {
             this.layoutManager = layoutManager
             this.adapter = adapter
         }
+
+        view.findViewById<Button>(R.id.btn_go_to_users).setOnClickListener {
+            goToUsers()
+        }
     }
 
     fun goToAppointments(id: Long) {
@@ -70,6 +75,11 @@ class HomeFragment : Fragment() {
             }
             goToAppointments(categoryType.id.toLong())
         }
+    }
+
+    fun goToUsers() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNavigationUsers()
+        findNavController().navigate(action)
     }
 
 }

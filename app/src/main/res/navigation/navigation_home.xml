@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_appointmentsFragment"
             app:destination="@id/appointmentsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_navigation_users"
+            app:destination="@id/navigation_users" />
     </fragment>
     <fragment
         android:id="@+id/appointmentsFragment"
@@ -22,4 +25,5 @@
 
         <argument android:name="categoryId" app:nullable="false" app:argType="long" />
     </fragment>
+    <include app:graph="@navigation/navigation_users" />
 </navigation>
