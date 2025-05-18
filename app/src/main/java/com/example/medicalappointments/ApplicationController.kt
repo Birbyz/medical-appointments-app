@@ -1,12 +1,16 @@
 package com.example.medicalappointments
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.medicalappointments.data.AppDatabase
+import com.example.medicalappointments.managers.SharedPrefsManager
 
 class ApplicationController: Application() {
     // everything is static inside the companion
     companion object{
+        const val SHARED_PREFS_NAME = "shared_refs"
+
         var instance: ApplicationController? = null
             private set // this param can be accessed outside the companion, yet it cannot be modified
     }
@@ -29,5 +33,9 @@ class ApplicationController: Application() {
         )
             .fallbackToDestructiveMigration() //this wapes out the database in case of failed migration
             .build()
+    }
+
+    val sharedPrefs: SharedPreferences by lazy {
+        getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE)
     }
 }

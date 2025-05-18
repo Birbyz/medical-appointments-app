@@ -6,16 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medicalappointments.R
 import com.example.medicalappointments.models.UserModel
 
-class UsersAdapter(
-    var items: List<UserModel>
-): RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
-
-    override fun getItemCount() = items.size
+class UsersAdapter: ListAdapter<UserModel, UsersAdapter.UserViewHolder>(UsersDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,16 +27,9 @@ class UsersAdapter(
         holder: UserViewHolder,
         position: Int
     ) {
-        items.getOrNull(position)?.let {
+        getItem(position)?.let {
             item -> holder.bind(item)
         }
-    }
-
-    fun updateList(newList: List<UserModel>) {
-        // checks the differences between the 2 lists and stores them in a new list
-        val diffResult = DiffUtil.calculateDiff(UsersDiffCallback(items, newList))
-        items = newList
-        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -58,33 +48,18 @@ class UsersAdapter(
                 .into(avatar)
         }
     }
+}
 
 //    ITEMS COMPARISON
-    inner class UsersDiffCallback(
-        private val oldList: List<UserModel>,
-        private val newList: List<UserModel>
-    ): DiffUtil.Callback() {
-
-        override fun getOldListSize(): Int {
-            return oldList.size
-        }
-
-    override fun getNewListSize(): Int {
-        return newList.size
-    }
+private class UsersDiffCallback: DiffUtil.ItemCallback<UserModel>() {
 
     override fun areItemsTheSame(
-        oldItemPosition: Int,
-        newItemPosition: Int
-    ): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
-    }
+        oldItem: UserModel,
+        newItem: UserModel
+    ): Boolean = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItemPosition: Int,
-        newItemPosition: Int
-    ): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
-    }
-}
+        oldItem: UserModel,
+        newItem: UserModel
+    ): Boolean = oldItem == newItem
 }
