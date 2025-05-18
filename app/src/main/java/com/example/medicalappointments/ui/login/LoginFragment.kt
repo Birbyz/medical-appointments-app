@@ -5,10 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.medicalappointments.R
+import com.example.medicalappointments.networking.repository.AuthenticationRepository
+import com.example.medicalappointments.utils.extensions.logErrorMessage
+import com.example.medicalappointments.utils.extensions.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okio.IOException
+import retrofit2.HttpException
 
 class LoginFragment : Fragment() {
 
@@ -28,7 +38,7 @@ class LoginFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.btn_login).setOnClickListener {
-            goToHome()
+            doLogin()
         }
     }
 
@@ -40,5 +50,33 @@ class LoginFragment : Fragment() {
     private fun goToHome() {
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         findNavController().navigate(action)
+    }
+
+    private fun doLogin(){
+        val email = view?.findViewById<EditText>(R.id.edt_email)?.text?.toString()
+        val password = view?.findViewById<EditText>(R.id.etd_password)?.text?.toString()
+
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            "Invalid credentials".showToast(requireContext())
+            return
+        }
+
+        // LOGIN PROCESS
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val result = withContext(Dispatchers.IO) {
+                    AuthenticationRepository.login(email, password)
+                }
+                "Login succes: ${result.token}".showToast(requireContext())
+
+                goToHome()
+            } catch (e: IOException) {
+                ("Please check your internet connection").showToast(requireContext())
+            } catch (e: HttpException) {
+                ("Server error: ${e.code()}".showToast(requireContext()))
+            } catch (e: Exception) {
+                ("Unexpected error: ${e.localizedMessage}").showToast(requireContext())
+            }
+        }
     }
 }

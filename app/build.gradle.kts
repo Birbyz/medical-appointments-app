@@ -57,6 +57,11 @@ dependencies {
 //  include media from an URL
     implementation(libs.glide)
 
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson) // JSON parser
+    implementation(libs.logging.interceptor) // LOGGING
+    implementation(libs.kotlinx.coroutines.android) // coroutines
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

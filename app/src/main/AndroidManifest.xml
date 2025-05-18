@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- permisiune de internet -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- permisiune de camera -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- permisiune de internet -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
