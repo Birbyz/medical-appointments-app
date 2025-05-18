@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.medicalappointments.BuildConfig
 import com.example.medicalappointments.R
 import com.example.medicalappointments.networking.repository.AuthenticationRepository
 import com.example.medicalappointments.utils.extensions.logErrorMessage
@@ -39,6 +40,12 @@ class LoginFragment : Fragment() {
 
         view.findViewById<Button>(R.id.btn_login).setOnClickListener {
             doLogin()
+        }
+
+        if (BuildConfig.DEBUG) {
+            // case: program runs from AndroidStudio - autocompletes the login fields with the following credentials
+            view.findViewById<EditText>(R.id.edt_email).setText("eve.holt@reqres.in")
+            view.findViewById<EditText>(R.id.etd_password).setText("cityslicka")
         }
     }
 
