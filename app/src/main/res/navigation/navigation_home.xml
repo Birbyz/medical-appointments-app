@@ -9,5 +9,17 @@
         android:id="@+id/homeFragment"
         android:name="com.example.medicalappointments.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_appointmentsFragment"
+            app:destination="@id/appointmentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentsFragment"
+        android:name="com.example.medicalappointments.ui.appointments.AppointmentsFragment"
+        android:label="AppointmentsFragment"
+        tools:layout="@layout/fragment_appointments">
+
+        <argument android:name="categoryId" app:nullable="false" app:argType="long" />
+    </fragment>
 </navigation>
