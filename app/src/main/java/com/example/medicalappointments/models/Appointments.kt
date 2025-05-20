@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 data class Appointments(
     var title: String,
-    var pacient: Pacient,
+    var patient: Patient,
     var doctor: Doctor,
     var date: LocalDateTime,
     var description: String

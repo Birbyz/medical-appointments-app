@@ -5,14 +5,21 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.medicalappointments.data.dao.AppointmentDAO
 import com.example.medicalappointments.data.dao.CategoryDAO
+import com.example.medicalappointments.data.dao.PatientDAO
 import com.example.medicalappointments.data.dao.UserDAO
 import com.example.medicalappointments.data.models.AppointmentEntityModel
 import com.example.medicalappointments.data.models.CategoryEntityModel
+import com.example.medicalappointments.models.Patient
 import com.example.medicalappointments.models.UserModel
 
 @Database(
-    entities = [AppointmentEntityModel::class, CategoryEntityModel::class, UserModel::class],
-    version = 3
+    entities = [
+        AppointmentEntityModel::class,
+        CategoryEntityModel::class,
+        UserModel::class,
+        Patient::class
+    ],
+    version = 4
 )
 
 @TypeConverters(
@@ -22,4 +29,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract val appointmentDAO: AppointmentDAO
     abstract val categoryDAO: CategoryDAO
     abstract val userDAO: UserDAO
+    abstract val patientDAO: PatientDAO
 }

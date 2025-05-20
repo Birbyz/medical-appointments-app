@@ -26,4 +26,5 @@
     <string name="get_appointment">Get appointment</string>
     <string name="unknown">"Unknown"</string>
     <string name="go_to_users">Go to users</string>
+    <string name="go_to_patients">Go to patients</string>
 </resources>
