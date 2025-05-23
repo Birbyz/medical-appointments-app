@@ -1,26 +1,48 @@
 package com.example.medicalappointments.models
 
+import android.content.Context
 import com.example.medicalappointments.R
 
-sealed class Category (
-    open val id: Int,
-    val name: String,
-    val type: CategoryType
-)
+enum class Category(
+    val id: Int,
+    val nameRes: Int,      // referință la string din res/values/strings.xml
+    val iconRes: String       // referință la drawable din res/drawable
+) {
+    SURGERY(
+        id = 0,
+        nameRes = R.string.surgery,
+        iconRes = "https://avatar.iran.liara.run/public"
+    ),
+    VIDEO(
+        id = 1,
+        nameRes = R.string.video_conference,
+        iconRes = "https://avatar.iran.liara.run/public"
+    ),
+    REGULAR(
+        id = 2,
+        nameRes = R.string.regular,
+        iconRes = "https://avatar.iran.liara.run/public"
+    ),
+    FOLLOW_UP(
+        id = 3,
+        nameRes = R.string.follow_up,
+        iconRes = "https://avatar.iran.liara.run/public"
+    ),
+    EMERGENCY(
+      id = 4,
+        nameRes = R.string.emergency,
+        iconRes = "https://avatar.iran.liara.run/public"
+    ),
+    UNKNOWN(
+        id = -1,
+        nameRes = R.string.unknown,
+        iconRes = "https://avatar.iran.liara.run/public"
+    );
 
-class Surgery(id: Int): Category(id, "Surgery", CategoryType.SURGERY)
-class Video(id: Int): Category(id, "Video", CategoryType.VIDEO)
-class Regular(id: Int): Category(id, "Regular", CategoryType.REGULAR)
-class Follow_Up(id: Int): Category(id, "Follow up", CategoryType.FOLLOW_UP)
-
-enum class CategoryType(val id: Int, val resourceId: Int) {
-    SURGERY(0, R.string.surgery),
-    VIDEO(1, R.string.video_conference),
-    REGULAR(2, R.string.regular),
-    FOLLOW_UP(3, R.string.follow_up),
-    UNKNOWN(-1, R.string.unknown);
+    // Returnează numele localizat
+    fun getDisplayName(context: Context): String = context.getString(nameRes)
 
     companion object {
-        fun getCategoryTypeById(id: Int) = CategoryType.entries.find { it.id == id } ?: UNKNOWN
+        fun fromId(id: Int): Category = entries.find { it.id == id } ?: UNKNOWN
     }
 }

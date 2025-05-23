@@ -11,15 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.medicalappointments.R
+import com.example.medicalappointments.adapters.AppointmentsAdapter
 import com.example.medicalappointments.data.models.AppointmentEntityModel
 import com.example.medicalappointments.data.repositories.AppointmentRepository
 import com.example.medicalappointments.data.repositories.CategoryRepository
+import com.example.medicalappointments.models.Appointment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class AppointmentsFragment: Fragment() {
-    val args: AppointmentsFragmentArgs by navArgs()
+    private val adapter = AppointmentsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,32 +37,21 @@ class AppointmentsFragment: Fragment() {
         }
 
         view.findViewById<Button>(R.id.btn_get_categories)?.setOnClickListener{
-            getCategoriesWithAppointments()
+            getCategoriesFromDatabase()
         }
     }
 
-    fun generateRandomAppointment(): AppointmentEntityModel {
-        val appointmentTitles = listOf(
-            "General Consultation",
-            "Post-Operative Follow-up",
-            "Dermatology Check-up",
-            "Left Knee Surgery",
-            "Video Therapy Session",
-            "Annual Cardiology Evaluation",
-            "Routine Pediatric Control"
-        )
-        Log.e("CITY", appointmentTitles.random())
-
-        return AppointmentEntityModel(title = appointmentTitles.random(), categoryId = args.categoryId)
+    fun generateRandomAppointment(): Appointment {
+        return TODO("Provide the return value")
     }
 
-    fun getCategoriesWithAppointments() {
-        lifecycleScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                CategoryRepository.getAllCategoriesWithAppointments()
+    fun getCategoriesFromDatabase() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val models = withContext(Dispatchers.IO) {
+                val entities = AppointmentRepository.getAll()
             }
 
-            view?.findViewById<TextView>(R.id.tv_result)?.text = result.toString()
+            adapter.submitList(models)
         }
     }
 

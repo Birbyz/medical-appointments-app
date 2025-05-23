@@ -1,6 +1,7 @@
 package com.example.medicalappointments.data
 
 import androidx.room.TypeConverter
+import com.example.medicalappointments.models.Category
 import com.example.medicalappointments.models.CategoryType
 import java.time.LocalDate
 
@@ -18,4 +19,11 @@ class AppDatabaseConverter {
 
     @TypeConverter
     fun fromDateToString(date: LocalDate?): String? = date?.toString()
+
+//  APPOINTMENTS - CATEGORIES CONVERTER
+    @TypeConverter
+    fun fromCategory(category: Category): Int = category.id
+
+    @TypeConverter
+    fun toCategory(id: Int): Category = Category.fromId(id)
 }

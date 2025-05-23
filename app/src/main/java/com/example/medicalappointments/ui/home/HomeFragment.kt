@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.CategoriesAdapter
-import com.example.medicalappointments.data.models.CategoryEntityModel
 import com.example.medicalappointments.data.repositories.CategoryRepository
 import com.example.medicalappointments.models.CategoryType
 import kotlinx.coroutines.Dispatchers
