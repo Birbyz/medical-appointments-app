@@ -19,7 +19,8 @@ import com.example.medicalappointments.utils.extensions.logErrorMessage
 import kotlin.math.log
 
 class AppointmentsAdapter(
-    val items: List<Appointment>
+    val items: List<Appointment>,
+    val onItemClick: () -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 //    return the list size
@@ -91,7 +92,6 @@ class AppointmentsAdapter(
 
     inner class FollowUpAppointmentViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         fun bind(appointment: FollowUpAppointment) {
-            Log.e("ERROR", "aici follow up")
             // fills up the fields with the appointment's values
             view.findViewById<TextView>(R.id.tv_appointment_title).text = appointment.title
             view.findViewById<TextView>(R.id.tv_appointment_description).text = appointment.description
@@ -101,6 +101,10 @@ class AppointmentsAdapter(
             Glide.with(imageView.context)
                 .load(appointment.imageUrl)
                 .into(imageView)
+
+            imageView.setOnClickListener {
+                onItemClick.invoke()
+            }
         }
     }
 
@@ -136,4 +140,6 @@ class AppointmentsAdapter(
             view.findViewById<TextView>(R.id.tv_appointment_description).text = appointment.description
         }
     }
+
+
 }

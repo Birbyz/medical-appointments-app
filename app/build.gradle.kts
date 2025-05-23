@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -34,9 +35,18 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.common.jvm)
+    ksp(libs.androidx.room.compiler)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
     implementation(libs.androidx.navigation.compose)
 //    Views/Fragments integration
     implementation(libs.androidx.navigation.fragment)
@@ -50,6 +60,11 @@ dependencies {
 
 //  include media from an URL
     implementation(libs.glide)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson) // JSON parser
+    implementation(libs.logging.interceptor) // LOGGING
+    implementation(libs.kotlinx.coroutines.android) // coroutines
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

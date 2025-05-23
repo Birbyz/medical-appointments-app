@@ -1,7 +1,18 @@
-import com.example.medicalappointments.R
+package com.example.medicalappointments.data.models
 
-class Doctor (
-    var name: String,
+import android.content.Context
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.medicalappointments.R
+import com.example.medicalappointments.models.UserModel
+
+@Entity(tableName = "doctors")
+data class Doctor (
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    @Embedded(prefix = "user_")
+    val user: UserModel,
     var yearsOfExperience: Int,
     var specialty: SpecialtyType
 )
@@ -17,4 +28,8 @@ enum class SpecialtyType(val id: Int, val SpecialtyName: Int) {
     PSYCHIATRIST(7, R.string.psychiatrist),
     ORTHOPEDIST(8, R.string.orthopedist),
     ONCOLOGIST(9, R.string.oncologist);
+}
+
+fun SpecialtyType.getDisplayName(context: Context): String {
+    return context.getString(this.SpecialtyName)
 }

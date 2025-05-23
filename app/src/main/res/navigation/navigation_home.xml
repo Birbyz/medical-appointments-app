@@ -9,5 +9,32 @@
         android:id="@+id/homeFragment"
         android:name="com.example.medicalappointments.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_appointmentsFragment"
+            app:destination="@id/appointmentsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_navigation_users"
+            app:destination="@id/navigation_users" />
+        <action
+            android:id="@+id/action_homeFragment_to_patientsFragment"
+            app:destination="@id/patientsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_navigation_patients"
+            app:destination="@id/navigation_patients" />
+        <action
+            android:id="@+id/action_homeFragment_to_navigation_doctors"
+            app:destination="@id/navigation_doctors" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentsFragment"
+        android:name="com.example.medicalappointments.ui.appointments.AppointmentsFragment"
+        android:label="AppointmentsFragment"
+        tools:layout="@layout/fragment_appointments">
+
+        <argument android:name="categoryId" app:nullable="false" app:argType="long" />
+    </fragment>
+    <include app:graph="@navigation/navigation_users" />
+    <include app:graph="@navigation/navigation_patients" />
+    <include app:graph="@navigation/navigation_doctors" />
 </navigation>

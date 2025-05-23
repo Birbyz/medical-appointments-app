@@ -17,8 +17,15 @@
     <string name="register">Register</string>
     <string name="home_page">Home page</string>
     <string name="write_your_email_here">Write your email here...</string>
+    <string name="write_your_password_here">Write your password here...</string>
     <string name="surgery">Surgery</string>
     <string name="video_conference">Video Conference</string>
     <string name="regular">Regular</string>
     <string name="follow_up">Follow-up</string>
+    <string name="insert_appointment">Insert appointment</string>
+    <string name="get_appointment">Get appointment</string>
+    <string name="unknown">"Unknown"</string>
+    <string name="go_to_users">Go to users</string>
+    <string name="go_to_patients">Go to patients</string>
+    <string name="go_to_doctors">Go to doctors</string>
 </resources>

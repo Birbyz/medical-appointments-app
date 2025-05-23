@@ -17,5 +17,10 @@ enum class CategoryType(val id: Int, val resourceId: Int) {
     SURGERY(0, R.string.surgery),
     VIDEO(1, R.string.video_conference),
     REGULAR(2, R.string.regular),
-    FOLLOW_UP(3, R.string.follow_up)
+    FOLLOW_UP(3, R.string.follow_up),
+    UNKNOWN(-1, R.string.unknown);
+
+    companion object {
+        fun getCategoryTypeById(id: Int) = CategoryType.entries.find { it.id == id } ?: UNKNOWN
+    }
 }
