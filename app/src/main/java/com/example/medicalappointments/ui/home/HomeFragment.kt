@@ -1,6 +1,6 @@
 package com.example.medicalappointments.ui.home
 
-import Doctor
+import com.example.medicalappointments.data.models.Doctor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +60,10 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.btn_go_to_patients).setOnClickListener {
             goToPatients()
         }
+
+        view.findViewById<Button>(R.id.btn_go_to_doctors).setOnClickListener {
+            goToDoctors()
+        }
     }
 
     fun goToAppointments(id: Long) {
@@ -91,4 +95,8 @@ class HomeFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    fun goToDoctors() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNavigationDoctors()
+        findNavController().navigate(action)
+    }
 }

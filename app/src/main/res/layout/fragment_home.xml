@@ -41,6 +41,13 @@
             android:layout_height="wrap_content"
             android:text="@string/go_to_patients" />
 
+<!--        BUTTON TO DOCTORS-->
+        <Button
+            android:id="@+id/btn_go_to_doctors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_doctors" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

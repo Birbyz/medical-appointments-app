@@ -27,4 +27,5 @@
     <string name="unknown">"Unknown"</string>
     <string name="go_to_users">Go to users</string>
     <string name="go_to_patients">Go to patients</string>
+    <string name="go_to_doctors">Go to doctors</string>
 </resources>

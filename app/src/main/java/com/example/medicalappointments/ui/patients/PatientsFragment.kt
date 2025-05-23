@@ -39,7 +39,7 @@ class PatientsFragment: Fragment() {
         }
 
         // INSERT
-        //insertDummyPatient()
+        insertDummyPatient()
 
         //GET PATIENTS FROM DB
         getPatientsFromDatabase()

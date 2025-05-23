@@ -1,10 +1,12 @@
 package com.example.medicalappointments.data
 
+import com.example.medicalappointments.data.models.Doctor
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.medicalappointments.data.dao.AppointmentDAO
 import com.example.medicalappointments.data.dao.CategoryDAO
+import com.example.medicalappointments.data.dao.DoctorDAO
 import com.example.medicalappointments.data.dao.PatientDAO
 import com.example.medicalappointments.data.dao.UserDAO
 import com.example.medicalappointments.data.models.AppointmentEntityModel
@@ -17,9 +19,10 @@ import com.example.medicalappointments.models.UserModel
         AppointmentEntityModel::class,
         CategoryEntityModel::class,
         UserModel::class,
-        Patient::class
+        Patient::class,
+        Doctor:: class
     ],
-    version = 4
+    version = 5
 )
 
 @TypeConverters(
@@ -30,4 +33,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract val categoryDAO: CategoryDAO
     abstract val userDAO: UserDAO
     abstract val patientDAO: PatientDAO
+    abstract val doctorDAO: DoctorDAO
 }
