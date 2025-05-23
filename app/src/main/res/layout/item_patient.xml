@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.2"
         app:layout_constraintHorizontal_bias="0.1"
-        android:src="@drawable/ic_launcher_background"
+        tools:src="@drawable/ic_launcher_background"
         />
 
 <!--    INFO BOX-->

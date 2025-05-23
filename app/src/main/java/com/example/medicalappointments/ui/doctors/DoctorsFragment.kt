@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.ApplicationController
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.DoctorsAdapter
-import com.example.medicalappointments.data.models.Doctor
 import com.example.medicalappointments.data.models.SpecialtyType
 import com.example.medicalappointments.data.repositories.DoctorRepository
 import com.example.medicalappointments.models.DoctorModel
