@@ -10,18 +10,21 @@ import com.example.medicalappointments.data.dao.DoctorDAO
 import com.example.medicalappointments.data.dao.PatientDAO
 import com.example.medicalappointments.data.dao.UserDAO
 import com.example.medicalappointments.data.models.AppointmentEntityModel
+import com.example.medicalappointments.data.models.CategoryEntityModel
 import com.example.medicalappointments.models.Appointment
+import com.example.medicalappointments.models.Category
 import com.example.medicalappointments.models.Patient
 import com.example.medicalappointments.models.UserModel
 
 @Database(
     entities = [
-        Appointment::class,
+        AppointmentEntityModel::class,
         UserModel::class,
         Patient::class,
-        Doctor:: class
+        Doctor:: class,
+        CategoryEntityModel:: class
     ],
-    version = 4
+    version = 5
 )
 
 @TypeConverters(
@@ -32,4 +35,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract val userDAO: UserDAO
     abstract val patientDAO: PatientDAO
     abstract val doctorDAO: DoctorDAO
+    abstract val categoryDAO: CategoryDAO
 }

@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.CategoriesAdapter
+import com.example.medicalappointments.data.models.CategoryEntityModel
 import com.example.medicalappointments.data.repositories.CategoryRepository
-import com.example.medicalappointments.models.CategoryType
+import com.example.medicalappointments.models.Category
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,14 +35,14 @@ class HomeFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_items)
 
         val items = listOf(
-            CategoryType.FOLLOW_UP,
-            CategoryType.VIDEO,
-            CategoryType.SURGERY,
-            CategoryType.REGULAR
+            Category.FOLLOW_UP,
+            Category.VIDEO,
+            Category.SURGERY,
+            Category.REGULAR
         ).shuffled()
 
         val adapter = CategoriesAdapter(items) {
-            direction -> addCategoryIntoDatabase(direction)
+                direction -> addCategoryIntoDatabase(direction)
         } // {} for unit - lambda fun
 
         val layoutManager = LinearLayoutManager(requireContext())
@@ -71,16 +72,16 @@ class HomeFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    fun addCategoryIntoDatabase(categoryType: CategoryType) {
+    fun addCategoryIntoDatabase(category: Category) {
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 val entity = CategoryEntityModel(
-                    id = categoryType.id.toLong(),
-                    category = categoryType
+                    id = category.id.toLong(),
+                    name = category.name
                 )
                 CategoryRepository.insert(entity)
             }
-            goToAppointments(categoryType.id.toLong())
+            goToAppointments(category.id.toLong())
         }
     }
 

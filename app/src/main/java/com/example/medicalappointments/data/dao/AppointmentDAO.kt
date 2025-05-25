@@ -10,11 +10,11 @@ import com.example.medicalappointments.models.Appointment
 @Dao
 interface AppointmentDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAppointment(appointment: Appointment): Long
+    suspend fun insertAppointment(appointment: AppointmentEntityModel): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAppointments(appointments: List<Appointment>): List<Long>
+    suspend fun insertAppointments(appointments: List<AppointmentEntityModel>): List<Long>
 
     @Query("SELECT * FROM appointments")
-    suspend fun getAll(): List<Appointment>
+    suspend fun getAll(): List<AppointmentEntityModel>
 }

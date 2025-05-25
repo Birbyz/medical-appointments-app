@@ -7,19 +7,19 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_insert_appointment"
-        android:text="@string/insert_appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/btn_insert_appointment"-->
+<!--        android:text="@string/insert_appointment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
 
-    <Button
-        android:id="@+id/btn_get_categories"
-        android:text="@string/get_appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    />
+<!--    <Button-->
+<!--        android:id="@+id/btn_get_categories"-->
+<!--        android:text="@string/get_appointment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--    />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_appointments"

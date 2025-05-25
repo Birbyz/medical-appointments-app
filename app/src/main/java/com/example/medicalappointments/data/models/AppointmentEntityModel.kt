@@ -22,7 +22,7 @@ data class AppointmentEntityModel (
     val category: Category
 )
 
-fun AppointmentEntityModel.toModel() = Appointment(
+fun Appointment.toEntity() = AppointmentEntityModel(
     id = id,
     title = title,
     description = description,
@@ -32,7 +32,7 @@ fun AppointmentEntityModel.toModel() = Appointment(
     category = category,
 )
 
-fun Appointment.toEntity() = AppointmentEntityModel(
+fun AppointmentEntityModel.toModel(): Appointment = Appointment(
     id = id,
     title = title,
     description = description,

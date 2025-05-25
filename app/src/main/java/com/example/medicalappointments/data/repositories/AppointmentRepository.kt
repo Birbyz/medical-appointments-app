@@ -9,9 +9,9 @@ import kotlinx.coroutines.launch
 
 object AppointmentRepository {
 
-    suspend fun getAll() = ApplicationController.instance?.appDatabase?.appointmentDAO?.getAll()
+    suspend fun getAll() = ApplicationController.instance?.appDatabase?.appointmentDAO?.getAll() ?: listOf()
 
-    fun insert(appointment: Appointment) {
+    fun insert(appointment: AppointmentEntityModel) {
         CoroutineScope(Dispatchers.IO).launch {
             // creates a new thread
             // allows getting methods from DAO without blocking the main thread
@@ -19,7 +19,7 @@ object AppointmentRepository {
         }
     }
 
-    suspend fun insertAll(appointments: List<Appointment>) {
+    suspend fun insertAll(appointments: List<AppointmentEntityModel>) {
         ApplicationController.instance?.appDatabase?.appointmentDAO?.insertAppointments(appointments)
     }
 }

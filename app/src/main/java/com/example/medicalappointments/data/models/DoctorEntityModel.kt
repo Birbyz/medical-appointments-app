@@ -5,6 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.medicalappointments.R
+import com.example.medicalappointments.models.Category
 import com.example.medicalappointments.models.UserModel
 
 @Entity(tableName = "doctors")
@@ -17,7 +18,7 @@ data class Doctor (
     var specialty: SpecialtyType
 )
 
-enum class SpecialtyType(val id: Int, val SpecialtyName: Int) {
+enum class SpecialtyType(val id: Int, val specialty: Int) {
     OPHTHALMOLOGIST(0, R.string.ophthalmologist),
     GENERAL_PRACTITIONER(1, R.string.general_practitioner),
     CARDIOLOGIST(2, R.string.cardiologist),
@@ -31,5 +32,5 @@ enum class SpecialtyType(val id: Int, val SpecialtyName: Int) {
 }
 
 fun SpecialtyType.getDisplayName(context: Context): String {
-    return context.getString(this.SpecialtyName)
+    return context.getString(this.specialty)
 }

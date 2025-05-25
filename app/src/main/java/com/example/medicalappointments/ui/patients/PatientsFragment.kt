@@ -66,7 +66,6 @@ class PatientsFragment: Fragment() {
                     lastName = "Doe",
                     avatar = "https://avatar.iran.liara.run/public"
                 ),
-                age = 23,
                 birthdate = LocalDate.of(2001, 10, 25)
             ),
             Patient(
@@ -77,7 +76,6 @@ class PatientsFragment: Fragment() {
                     lastName = "Smith",
                     avatar = "https://avatar.iran.liara.run/public"
                 ),
-                age = 30,
                 birthdate = LocalDate.of(1994, 5, 12)
             ),
             Patient(
@@ -88,7 +86,6 @@ class PatientsFragment: Fragment() {
                     lastName = "Miller",
                     avatar = "https://avatar.iran.liara.run/public"
                 ),
-                age = 40,
                 birthdate = LocalDate.of(1984, 1, 3)
             ),
             Patient(
@@ -99,7 +96,6 @@ class PatientsFragment: Fragment() {
                     lastName = "Wilson",
                     avatar = "https://avatar.iran.liara.run/public"
                 ),
-                age = 27,
                 birthdate = LocalDate.of(1997, 8, 19)
             ),
             Patient(
@@ -110,7 +106,6 @@ class PatientsFragment: Fragment() {
                     lastName = "Brown",
                     avatar = "https://avatar.iran.liara.run/public"
                 ),
-                age = 35,
                 birthdate = LocalDate.of(1989, 11, 7)
             )
         )

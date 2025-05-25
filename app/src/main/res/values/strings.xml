@@ -29,4 +29,8 @@
     <string name="go_to_users">Go to users</string>
     <string name="go_to_patients">Go to patients</string>
     <string name="go_to_doctors">Go to doctors</string>
+    <string name="category">Category</string>
+    <string name="patient_name">Patient name</string>
+    <string name="label_age">Age: %1$d</string>
+    <string name="go_to_appointments">Go to appointments</string>
 </resources>

@@ -1,6 +1,6 @@
 package com.example.medicalappointments.adapters
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.medicalappointments.R
 import com.example.medicalappointments.models.Appointment
+import com.example.medicalappointments.utils.extensions.getAge
 import com.example.medicalappointments.utils.extensions.logErrorMessage
-import kotlin.math.log
 
 class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(
     AppointmentDiffCallback()
@@ -26,7 +25,7 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
         "onCreateViewHolder".logErrorMessage()
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.fragment_appointments, parent, false)
+            .inflate(R.layout.item_appointment, parent, false)
 
         return AppointmentViewHolder(view)
     }
@@ -39,9 +38,37 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
     }
 
     inner class AppointmentViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        //category data
+        private val categoryIcon = itemView.findViewById<ImageView>(R.id.iv_category_icon)
+        private val categoryName = itemView.findViewById<TextView>(R.id.tv_category_name)
+        // appointment data
+        private val title: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_title)
+        // patient data
+        private val patientName: TextView = itemView.findViewById<TextView>(R.id.tv_full_name)
+        private val patientBirthdate: TextView = itemView.findViewById<TextView>(R.id.tv_age_birthdate)
+        //appointment data
+        private val description: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_description)
+
+
+        @SuppressLint("SetTextI18n")
         fun bind(appointment: Appointment) {
             // fills up the fields with the appointment's values
+            val context = itemView.context
 
+//            Category Info
+            categoryName.text = appointment.category.getDisplayName(context) // adapts the category name to the phone's language
+            categoryIcon.setImageResource(appointment.category.iconRes)
+
+//            Appointment title
+            title.text = appointment.title
+            description.text = appointment.description
+
+//            Patient info
+            val patient = appointment.patient.user
+            patientName.text = "${patient.firstName} ${patient.lastName}"
+
+            val age = appointment.patient.birthdate.getAge()
+            patientBirthdate.text = context.getString(R.string.label_age, age)
         }
     }
 }

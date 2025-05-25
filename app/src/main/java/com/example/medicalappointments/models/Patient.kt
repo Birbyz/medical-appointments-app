@@ -11,6 +11,5 @@ data class Patient (
     val id: Long = 0,
     @Embedded(prefix = "user_")
     val user: UserModel,
-    var age: Int,
     var birthdate: LocalDate
 )

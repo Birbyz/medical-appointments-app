@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.medicalappointments.R
 import com.example.medicalappointments.data.dao.PatientDAO
 import com.example.medicalappointments.models.Patient
+import com.example.medicalappointments.utils.extensions.getAge
 
 //ListAdapter is a class which requires a param
 // the param fun is used to keep only the original items and avoid duplicates
@@ -42,7 +43,9 @@ class PatientsAdapter: ListAdapter<Patient, PatientsAdapter.PatientViewHolder>(P
 
         fun bind(model: Patient) {
             val fullNameValue = "${model.user.firstName} ${model.user.lastName}"
-            val fullBirthDate = "${model.age} (${model.birthdate})"
+
+            val age = model.birthdate.getAge()
+            val fullBirthDate = "$age (${model.birthdate})"
 
             fullName.text = fullNameValue
             ageBirthdate.text = fullBirthDate
