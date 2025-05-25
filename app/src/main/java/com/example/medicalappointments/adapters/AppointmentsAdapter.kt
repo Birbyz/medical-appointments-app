@@ -43,14 +43,15 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
         private val categoryName = itemView.findViewById<TextView>(R.id.tv_category_name)
         // appointment data
         private val title: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_title)
+        private val date: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_date)
         // patient data
-        private val patientName: TextView = itemView.findViewById<TextView>(R.id.tv_full_name)
+        private val patientName: TextView = itemView.findViewById<TextView>(R.id.tv_patient_name)
         private val patientBirthdate: TextView = itemView.findViewById<TextView>(R.id.tv_age_birthdate)
         //appointment data
         private val description: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_description)
 
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "WeekBasedYear")
         fun bind(appointment: Appointment) {
             // fills up the fields with the appointment's values
             val context = itemView.context
@@ -59,9 +60,11 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
             categoryName.text = appointment.category.getDisplayName(context) // adapts the category name to the phone's language
             categoryIcon.setImageResource(appointment.category.iconRes)
 
-//            Appointment title
+//            Appointment info
             title.text = appointment.title
             description.text = appointment.description
+            val formatter = java.time.format.DateTimeFormatter.ofPattern("dd MMM YYYY, HH:MM")
+            date.text = appointment.date.format(formatter)
 
 //            Patient info
             val patient = appointment.patient.user

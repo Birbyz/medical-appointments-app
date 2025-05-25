@@ -31,7 +31,7 @@ class ApplicationController: Application() {
             klass = AppDatabase::class.java,
             name = "localDatabase"
         )
-            .fallbackToDestructiveMigration() //this wipes out the database in case of failed migration
+            //.fallbackToDestructiveMigration() //this wipes out the database in case of failed migration
             .build()
     }
 

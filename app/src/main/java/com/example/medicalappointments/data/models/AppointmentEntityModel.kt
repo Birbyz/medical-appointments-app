@@ -22,22 +22,5 @@ data class AppointmentEntityModel (
     val category: Category
 )
 
-fun Appointment.toEntity() = AppointmentEntityModel(
-    id = id,
-    title = title,
-    description = description,
-    patient = patient,
-    doctor = doctor,
-    date = date,
-    category = category,
-)
 
-fun AppointmentEntityModel.toModel(): Appointment = Appointment(
-    id = id,
-    title = title,
-    description = description,
-    patient = patient,
-    doctor = doctor,
-    date = date,
-    category = category,
-)
+

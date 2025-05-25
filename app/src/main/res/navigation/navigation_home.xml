@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_navigation_doctors"
             app:destination="@id/navigation_doctors" />
+        <action
+            android:id="@+id/action_homeFragment_to_navigation_appointments"
+            app:destination="@id/navigation_appointments" />
     </fragment>
     <fragment
         android:id="@+id/appointmentsFragment"
@@ -37,4 +40,5 @@
     <include app:graph="@navigation/navigation_users" />
     <include app:graph="@navigation/navigation_patients" />
     <include app:graph="@navigation/navigation_doctors" />
+    <include app:graph="@navigation/navigation_appointments" />
 </navigation>

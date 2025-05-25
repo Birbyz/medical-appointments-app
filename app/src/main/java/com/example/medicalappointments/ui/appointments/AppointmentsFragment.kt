@@ -1,6 +1,7 @@
 package com.example.medicalappointments.ui.appointments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,19 +14,18 @@ import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.AppointmentsAdapter
 import com.example.medicalappointments.data.models.Doctor
 import com.example.medicalappointments.data.models.SpecialtyType
-import com.example.medicalappointments.data.models.toEntity
 import com.example.medicalappointments.data.repositories.AppointmentRepository
 import com.example.medicalappointments.models.Appointment
 import com.example.medicalappointments.models.Category
 import com.example.medicalappointments.models.Patient
 import com.example.medicalappointments.models.UserModel
+import com.example.medicalappointments.models.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalDateTime
-import com.example.medicalappointments.data.models.toEntity
-import com.example.medicalappointments.data.models.toModel
+import com.example.medicalappointments.models.toModel
 
 class AppointmentsFragment: Fragment() {
     private val adapter = AppointmentsAdapter()
@@ -52,7 +52,8 @@ class AppointmentsFragment: Fragment() {
 //            getCategoriesFromDatabase()
 //        }
 
-
+        //insertDummyAppointments()
+        getAppointmentsFromDatabase()
     }
 
     private fun insertDummyAppointments() {
@@ -107,16 +108,20 @@ class AppointmentsFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 dummyAppointments.forEach {
-                    AppointmentRepository.insert(it.toEntity())
+                    AppointmentRepository.insert( it.toEntity() )
                 }
             }
         }
     }
 
     private fun getAppointmentsFromDatabase() {
+        Log.d("DB", "prepare to load")
         viewLifecycleOwner.lifecycleScope.launch {
+            Log.d("DB", "lifecycle")
             val models = withContext(Dispatchers.IO) {
-                AppointmentRepository.getAll().map { it.toModel() }
+                val entities = AppointmentRepository.getAll()
+                Log.d("DB", entities.toString())
+                entities.map { it.toModel() } // last line = the returned value
             }
             adapter.submitList(models)
         }

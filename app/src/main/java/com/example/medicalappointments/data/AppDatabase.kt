@@ -24,7 +24,7 @@ import com.example.medicalappointments.models.UserModel
         Doctor:: class,
         CategoryEntityModel:: class
     ],
-    version = 5
+    version = 6
 )
 
 @TypeConverters(

@@ -64,6 +64,10 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.btn_go_to_doctors).setOnClickListener {
             goToDoctors()
         }
+
+        view.findViewById<Button>(R.id.btn_go_to_appointments).setOnClickListener {
+            goToAppointments()
+        }
     }
 
     fun goToAppointments(id: Long) {
@@ -97,6 +101,11 @@ class HomeFragment : Fragment() {
 
     fun goToDoctors() {
         val action = HomeFragmentDirections.actionHomeFragmentToNavigationDoctors()
+        findNavController().navigate(action)
+    }
+
+    fun goToAppointments() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNavigationAppointments()
         findNavController().navigate(action)
     }
 }
