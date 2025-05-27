@@ -33,4 +33,8 @@
     <string name="patient_name">Patient name</string>
     <string name="label_age">Age: %1$d</string>
     <string name="go_to_appointments">Go to appointments</string>
+    <string name="title">Title</string>
+    <string name="dd_mm_yyyy_hh_mm">(DD/MM/YYYY) HH:MM</string>
+    <string name="additional_notes">Additional notes</string>
+    <string name="select_date_and_time">Select date and time</string>
 </resources>

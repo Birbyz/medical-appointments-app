@@ -5,8 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.ApplicationController
@@ -51,6 +54,10 @@ class AppointmentsFragment: Fragment() {
 //        view.findViewById<Button>(R.id.btn_get_categories)?.setOnClickListener{
 //            getCategoriesFromDatabase()
 //        }
+
+        view.findViewById<ImageButton>(R.id.btn_go_to_add_appointment)?.setOnClickListener {
+            goToAddAppointmentsForm()
+        }
 
         //insertDummyAppointments()
         getAppointmentsFromDatabase()
@@ -125,6 +132,11 @@ class AppointmentsFragment: Fragment() {
             }
             adapter.submitList(models)
         }
+    }
+
+    private fun goToAddAppointmentsForm() {
+        val action = AppointmentsFragmentDirections.actionAppointmentsFragmentToAddAppointmentsFragment()
+        findNavController().navigate(action)
     }
 
 }
