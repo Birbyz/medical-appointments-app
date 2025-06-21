@@ -17,13 +17,12 @@
         android:orientation="vertical"
         android:padding="@dimen/default_space">
 
-<!--        REGISTER text  -->
+        <!-- REGISTER title -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register"
-            android:gravity="center"
-            />
+            android:gravity="center" />
 
         <EditText
             android:id="@+id/edt_email"
@@ -33,16 +32,81 @@
             android:inputType="textEmailAddress"
             android:hint="@string/write_your_email_here" />
 
-        <!--      LOGIN  BUTTON  -->
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/write_your_password_here"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/edt_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/first_name" />
+
+        <EditText
+            android:id="@+id/edt_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last_name" />
+
+        <ImageView
+            android:id="@+id/iv_avatar_preview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder_avatar"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <EditText
+            android:id="@+id/edt_birthdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/birthdate"
+            android:inputType="date" />
+
+        <CheckBox
+            android:id="@+id/cb_is_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i_am_a_doctor" />
+
+        <LinearLayout
+            android:id="@+id/layout_specialty_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/et_experience_years"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/years_of_experience"
+                android:inputType="number"
+                android:maxLines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/specialty" />
+
+            <Spinner
+                android:id="@+id/sp_specialty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register"
-            android:layout_marginTop="@dimen/default_space"
-            />
-
+            android:layout_marginTop="@dimen/default_space" />
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,27 +7,28 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
-import com.example.medicalappointments.models.CategoryType
+import com.example.medicalappointments.models.Category
 import com.example.medicalappointments.utils.extensions.logErrorMessage
+import org.w3c.dom.Text
 
 class CategoriesAdapter(
-    val items: List<CategoryType>,
-    val onItemClick: (CategoryType) -> Unit
+    val items: List<Category>,
+    val onItemClick: (Category) -> Unit
 ): RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
 //    return the list size
     override fun getItemCount() = items.size
 
-    override fun getItemViewType(position: Int) = items[position].id
+    override fun getItemViewType(position: Int) = position
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): CategoryViewHolder {
-        "onCreateViewHolder".logErrorMessage()
+        //"onCreateViewHolder".logErrorMessage()
         val inflater = LayoutInflater.from(parent.context)
-
         val view = inflater.inflate(R.layout.item_category, parent, false)
+
         return CategoryViewHolder(view)
     }
 
@@ -44,9 +45,10 @@ class CategoriesAdapter(
     }
 
     inner class CategoryViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-        fun bind(category: CategoryType) {
+        fun bind(category: Category) {
             // fills up the fields with the appointment's values
-            view.findViewById<TextView>(R.id.tv_category_name).text = view.context.getString(category.resourceId)
+            val nameTextView = view.findViewById<TextView>(R.id.tv_category_name)
+            nameTextView.text = view.context.getString(category.nameRes)
 
             view.setOnClickListener {
                 onItemClick.invoke(category) // nav

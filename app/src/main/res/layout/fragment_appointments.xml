@@ -1,31 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    >
 
-    <Button
-        android:id="@+id/btn_insert_appointment"
-        android:text="@string/insert_appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/btn_insert_appointment"-->
+<!--        android:text="@string/insert_appointment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
 
-    <Button
-        android:id="@+id/btn_get_categories"
-        android:text="@string/get_appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    />
+<!--    <Button-->
+<!--        android:id="@+id/btn_get_categories"-->
+<!--        android:text="@string/get_appointment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--    />-->
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/default_space"
-        tools:text="Result"/>
+<!--    ADD APPOINTMENT BUTTON-->
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_go_to_add_appointment"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:shapeAppearanceOverlay="@style/RoundedButtonShape"
+        android:background="@drawable/bg_circle_ripple"
+        android:layout_marginTop="@dimen/default_space"
+        android:backgroundTint="@color/white"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_appointments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingVertical="@dimen/default_space"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_go_to_add_appointment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

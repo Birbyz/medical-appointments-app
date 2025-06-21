@@ -1,24 +1,15 @@
 package com.example.medicalappointments.ui.home
 
-import Doctor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
-import com.example.medicalappointments.adapters.CategoriesAdapter
-import com.example.medicalappointments.data.models.CategoryEntityModel
-import com.example.medicalappointments.data.repositories.CategoryRepository
-import com.example.medicalappointments.models.CategoryType
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.medicalappointments.managers.SharedPrefsManager
 
 class HomeFragment : Fragment() {
 
@@ -32,48 +23,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_items)
-
-        val items = listOf(
-            CategoryType.FOLLOW_UP,
-            CategoryType.VIDEO,
-            CategoryType.SURGERY,
-            CategoryType.REGULAR
-        ).shuffled()
-
-        val adapter = CategoriesAdapter(items) {
-            direction -> addCategoryIntoDatabase(direction)
-        } // {} for unit - lambda fun
-
-        val layoutManager = LinearLayoutManager(requireContext())
-
-        // add all params in recycleView (rv)
-        recyclerView.apply {
-            this.layoutManager = layoutManager
-            this.adapter = adapter
-        }
-
         view.findViewById<Button>(R.id.btn_go_to_users).setOnClickListener {
             goToUsers()
         }
-    }
 
-    fun goToAppointments(id: Long) {
-        val action = HomeFragmentDirections.actionHomeFragmentToAppointmentsFragment(id)
+        view.findViewById<Button>(R.id.btn_go_to_patients).setOnClickListener {
+            goToPatients()
+        }
 
-        findNavController().navigate(action)
-    }
+        view.findViewById<Button>(R.id.btn_go_to_doctors).setOnClickListener {
+            goToDoctors()
+        }
 
-    fun addCategoryIntoDatabase(categoryType: CategoryType) {
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                val entity = CategoryEntityModel(
-                    id = categoryType.id.toLong(),
-                    category = categoryType
-                )
-                CategoryRepository.insert(entity)
-            }
-            goToAppointments(categoryType.id.toLong())
+        view.findViewById<Button>(R.id.btn_go_to_appointments).setOnClickListener {
+            goToAppointments()
+        }
+
+        view.findViewById<Button>(R.id.btn_logout).setOnClickListener {
+            logout()
         }
     }
 
@@ -82,4 +49,27 @@ class HomeFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    fun goToPatients() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNavigationPatients()
+        findNavController().navigate(action)
+    }
+
+    fun goToDoctors() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNavigationDoctors()
+        findNavController().navigate(action)
+    }
+
+    fun goToAppointments() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNavigationAppointments()
+        findNavController().navigate(action)
+    }
+
+    private fun logout() {
+        SharedPrefsManager.clearAuthToken()
+
+        Toast.makeText(requireContext(), "You have been logged out.", Toast.LENGTH_SHORT).show()
+
+        val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+        findNavController().navigate(action)
+    }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_appointments"
+    app:startDestination="@id/appointmentsFragment">
+
+    <fragment
+        android:id="@+id/appointmentsFragment"
+        android:name="com.example.medicalappointments.ui.appointments.AppointmentsFragment"
+        android:label="AppointmentsFragment"
+        tools:layout="@layout/fragment_appointments">
+        <action
+            android:id="@+id/action_appointmentsFragment_to_addAppointmentsFragment"
+            app:destination="@id/addAppointmentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAppointmentsFragment"
+        android:name="com.example.medicalappointments.ui.forms.AddAppointmentsFragment"
+        android:label="AddAppointmentsFragment"
+        tools:layout="@layout/fragment_add_appointment"/>
+</navigation>

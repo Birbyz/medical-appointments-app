@@ -22,8 +22,27 @@
     <string name="video_conference">Video Conference</string>
     <string name="regular">Regular</string>
     <string name="follow_up">Follow-up</string>
+    <string name="emergency">Emergency</string>
     <string name="insert_appointment">Insert appointment</string>
     <string name="get_appointment">Get appointment</string>
     <string name="unknown">"Unknown"</string>
     <string name="go_to_users">Go to users</string>
+    <string name="go_to_patients">Go to patients</string>
+    <string name="go_to_doctors">Go to doctors</string>
+    <string name="category">Category</string>
+    <string name="patient_name">Patient name</string>
+    <string name="label_age">Age: %1$d</string>
+    <string name="go_to_appointments">Go to appointments</string>
+    <string name="title">Title</string>
+    <string name="dd_mm_yyyy_hh_mm">(DD/MM/YYYY) HH:MM</string>
+    <string name="additional_notes">Additional notes</string>
+    <string name="select_date_and_time">Select date and time</string>
+    <string name="send_appointment">Send appointment</string>
+    <string name="i_am_a_doctor">I am a doctor</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last name</string>
+    <string name="specialty">Specialty</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="years_of_experience">Years of experience</string>
+    <string name="logout">Logout</string>
 </resources>

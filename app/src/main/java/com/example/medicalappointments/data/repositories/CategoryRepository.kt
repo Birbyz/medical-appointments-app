@@ -2,7 +2,6 @@ package com.example.medicalappointments.data.repositories
 
 import com.example.medicalappointments.ApplicationController
 import com.example.medicalappointments.data.models.CategoryEntityModel
-import com.example.medicalappointments.data.models.CategoryWithAppointmentsEntityModel
 import com.example.medicalappointments.utils.extensions.logErrorMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ object CategoryRepository {
         ApplicationController.instance?.appDatabase?.categoryDAO?.insert(entityModel)
     }
 
-    suspend fun getAllCategoriesWithAppointments(): List<CategoryWithAppointmentsEntityModel> {
-        return ApplicationController.instance?.appDatabase?.categoryDAO?.getCategoriesWithAppointments() ?: listOf()
-    }
+//    suspend fun getAllCategoriesWithAppointments(): List<CategoryWithAppointmentsEntityModel> {
+//        return ApplicationController.instance?.appDatabase?.categoryDAO?.getCategoriesWithAppointments() ?: listOf()
+//    }
 }

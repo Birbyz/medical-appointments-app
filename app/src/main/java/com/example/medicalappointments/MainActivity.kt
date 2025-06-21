@@ -74,8 +74,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-    private fun changeDirection(){
-        findViewById<TextView>(R.id.textView2).text = getString(SpecialtyType.entries.random().SpecialtyName)
-    }
 }

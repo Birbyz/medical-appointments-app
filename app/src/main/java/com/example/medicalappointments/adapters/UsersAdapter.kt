@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medicalappointments.R
-import com.example.medicalappointments.models.UserModel
+import com.example.medicalappointments.models.User
 
-class UsersAdapter: ListAdapter<UserModel, UsersAdapter.UserViewHolder>(UsersDiffCallback()) {
+class UsersAdapter: ListAdapter<User, UsersAdapter.UserViewHolder>(UsersDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,7 +37,7 @@ class UsersAdapter: ListAdapter<UserModel, UsersAdapter.UserViewHolder>(UsersDif
         private val fullName: TextView = itemView.findViewById<TextView>(R.id.tv_full_name)
         private val email: TextView = itemView.findViewById<TextView>(R.id.tv_email)
 
-        fun bind(model: UserModel) {
+        fun bind(model: User) {
             val fullNameValue = "${model.firstName} ${model.lastName}"
             fullName.text = fullNameValue
 
@@ -51,15 +51,15 @@ class UsersAdapter: ListAdapter<UserModel, UsersAdapter.UserViewHolder>(UsersDif
 }
 
 //    ITEMS COMPARISON
-private class UsersDiffCallback: DiffUtil.ItemCallback<UserModel>() {
+private class UsersDiffCallback: DiffUtil.ItemCallback<User>() {
 
     override fun areItemsTheSame(
-        oldItem: UserModel,
-        newItem: UserModel
+        oldItem: User,
+        newItem: User
     ): Boolean = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: UserModel,
-        newItem: UserModel
+        oldItem: User,
+        newItem: User
     ): Boolean = oldItem == newItem
 }

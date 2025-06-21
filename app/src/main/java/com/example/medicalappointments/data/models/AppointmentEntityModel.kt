@@ -1,19 +1,24 @@
 package com.example.medicalappointments.data.models
 
-import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.medicalappointments.models.Appointment
+import com.example.medicalappointments.models.Category
+import com.example.medicalappointments.models.Patient
+import java.time.LocalDateTime
 
-@Entity
+@Entity(tableName = "appointments")
 data class AppointmentEntityModel (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val title: String,
+    val description: String,
+    val patientId: Long,
+    val doctorId: Long,
+    val date: LocalDateTime,
+    val categoryId: Long
+)
 
-    @ColumnInfo(name = CATEGORY_ID) // used later for reference to avoid hard-coding
-    val categoryId: Long // FK one-to-many
-){
-    companion object{
-        const val CATEGORY_ID = "categoryId"
-    }
-}
+
+

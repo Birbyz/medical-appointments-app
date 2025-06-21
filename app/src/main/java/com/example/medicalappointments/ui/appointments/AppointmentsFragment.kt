@@ -1,25 +1,27 @@
 package com.example.medicalappointments.ui.appointments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
-import com.example.medicalappointments.data.models.AppointmentEntityModel
+import com.example.medicalappointments.adapters.AppointmentsAdapter
 import com.example.medicalappointments.data.repositories.AppointmentRepository
-import com.example.medicalappointments.data.repositories.CategoryRepository
+import com.example.medicalappointments.data.repositories.DoctorRepository
+import com.example.medicalappointments.data.repositories.PatientRepository
+import com.example.medicalappointments.data.repositories.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class AppointmentsFragment: Fragment() {
-    val args: AppointmentsFragmentArgs by navArgs()
+    private lateinit var adapter: AppointmentsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,38 +32,42 @@ class AppointmentsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.btn_insert_appointment)?.setOnClickListener{
-            AppointmentRepository.insert(generateRandomAppointment())
+        view.findViewById<RecyclerView>(R.id.rv_appointments).apply {
+            this.adapter = this@AppointmentsFragment.adapter
+            this.layoutManager = LinearLayoutManager(this.context)
         }
 
-        view.findViewById<Button>(R.id.btn_get_categories)?.setOnClickListener{
-            getCategoriesWithAppointments()
+//        view.findViewById<Button>(R.id.btn_insert_appointment)?.setOnClickListener{
+//            AppointmentRepository.insert(generateRandomAppointment())
+//        }
+//
+//        view.findViewById<Button>(R.id.btn_get_categories)?.setOnClickListener{
+//            getCategoriesFromDatabase()
+//        }
+
+        view.findViewById<ImageButton>(R.id.btn_go_to_add_appointment)?.setOnClickListener {
+            goToAddAppointmentsForm()
         }
     }
 
-    fun generateRandomAppointment(): AppointmentEntityModel {
-        val appointmentTitles = listOf(
-            "General Consultation",
-            "Post-Operative Follow-up",
-            "Dermatology Check-up",
-            "Left Knee Surgery",
-            "Video Therapy Session",
-            "Annual Cardiology Evaluation",
-            "Routine Pediatric Control"
-        )
-        Log.e("CITY", appointmentTitles.random())
-
-        return AppointmentEntityModel(title = appointmentTitles.random(), categoryId = args.categoryId)
-    }
-
-    fun getCategoriesWithAppointments() {
+    private fun getAppointmentsAndSetupAdapter(view: View) {
         lifecycleScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                CategoryRepository.getAllCategoriesWithAppointments()
+            val appointments = withContext(Dispatchers.IO) {
+                val appointmentEntities = AppointmentRepository.getAll()
+                val users = UserRepository.getAll()
+                val patients = PatientRepository.getAll()
+                val doctors = DoctorRepository.getAll()
             }
 
-            view?.findViewById<TextView>(R.id.tv_result)?.text = result.toString()
+//            adapter = AppointmentsAdapter(users, birthdates)
+//            view.findViewById<RecyclerView>(R.id.rv_appointments).adapter = adapter
+//            adapter.submitList(appointments)
         }
+    }
+
+    private fun goToAddAppointmentsForm() {
+        val action = AppointmentsFragmentDirections.actionAppointmentsFragmentToAddAppointmentsFragment()
+        findNavController().navigate(action)
     }
 
 }

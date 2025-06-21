@@ -9,18 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.medicalappointments.ApplicationController
 import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.UsersAdapter
-import com.example.medicalappointments.models.UserModel
+import com.example.medicalappointments.data.models.DoctorEntityModel
+import com.example.medicalappointments.data.models.SpecialtyEntityModel
+import com.example.medicalappointments.data.models.UserEntityModel
+import com.example.medicalappointments.models.PatientEntityModel
+import com.example.medicalappointments.models.User
 import com.example.medicalappointments.data.repositories.UserRepository as UserDataRepository
 import com.example.medicalappointments.networking.repository.UserRepository
 import com.example.medicalappointments.utils.extensions.showToast
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
+import java.time.LocalDate
 
 class UsersFragment: Fragment() {
 
@@ -38,38 +43,6 @@ class UsersFragment: Fragment() {
         view.findViewById<RecyclerView>(R.id.rv_users).apply {
             this.adapter = this@UsersFragment.adapter
             this.layoutManager = LinearLayoutManager(this.context)
-        }
-
-        getUsersFromDatabase()
-        getUsersFromServer()
-    }
-
-    private fun getUsersFromDatabase() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                UserDataRepository.getAllUsers()
-            }
-
-            adapter.submitList(result)
-        }
-    }
-
-    private fun getUsersFromServer() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            try {
-                val result = withContext(Dispatchers.IO) {
-                    UserRepository.getUsers(1)
-                }
-
-                // NEEDS FIX
-                adapter.submitList(result as List<UserModel?>?)
-            } catch (e: IOException) {
-                ("Please check your internet connection").showToast(requireContext())
-            } catch (e: HttpException) {
-                ("Server error: ${e.code()}".showToast(requireContext()))
-            } catch (e: Exception) {
-                ("Unexpected error: ${e.localizedMessage}").showToast(requireContext())
-            }
         }
     }
 }
