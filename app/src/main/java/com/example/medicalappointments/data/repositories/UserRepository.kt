@@ -5,11 +5,9 @@ import com.example.medicalappointments.data.models.UserEntityModel
 import com.example.medicalappointments.models.User
 
 object UserRepository {
-    suspend fun insert(entities: List<UserEntityModel>) {
-        // creates a new thread
-        // allows getting methods from DAO without blocking the main thread
-        ApplicationController.instance?.appDatabase?.userDAO?.insert(entities)
-    }
+    suspend fun insertAndReturnId(user: UserEntityModel): Long = ApplicationController.instance?.appDatabase?.userDAO?.insert(user) ?: -1
 
     suspend fun getAll() = ApplicationController.instance?.appDatabase?.userDAO?.getAll() ?: listOf()
+
+    suspend fun getByEmail(email: String): UserEntityModel? = ApplicationController.instance?.appDatabase?.userDAO?.getByEmail(email)
 }

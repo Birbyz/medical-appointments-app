@@ -7,7 +7,7 @@ import com.example.medicalappointments.models.PatientEntityModel
 object PatientRepository {
     suspend fun getAll(): List<PatientEntityModel> = ApplicationController.instance?.appDatabase?.patientDAO?.getAll() ?: listOf()
 
-    suspend fun insertPatients(entities: List<PatientEntityModel>) {
-        ApplicationController.instance?.appDatabase?.patientDAO?.insertPatients(entities)
+    suspend fun insert(patient: PatientEntityModel) {
+        ApplicationController.instance?.appDatabase?.patientDAO?.insert(patient)
     }
 }

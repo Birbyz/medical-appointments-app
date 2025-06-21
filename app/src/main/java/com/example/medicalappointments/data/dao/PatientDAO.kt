@@ -9,9 +9,9 @@ import com.example.medicalappointments.models.PatientEntityModel
 
 @Dao
 interface PatientDAO {
-    //INSERT A LIST OF PATIENTS
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertPatients(patients: List<PatientEntityModel>)
+    suspend fun insert(patients: PatientEntityModel)
 
     //INSERT ONE PATIENT
 //    @Insert(onConflict = OnConflictStrategy.IGNORE)

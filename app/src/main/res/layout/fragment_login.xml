@@ -34,19 +34,16 @@
             android:hint="@string/write_your_email_here" />
 
 <!--        PASSWORD -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etd_password"
+
+            <EditText
+                android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:layout_marginTop="@dimen/default_space"
                 android:hint="@string/write_your_password_here"
                 />
-        </com.google.android.material.textfield.TextInputLayout>
+
 
 
 <!--        BUTTON  -->

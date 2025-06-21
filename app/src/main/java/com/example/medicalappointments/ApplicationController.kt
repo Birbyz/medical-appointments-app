@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.medicalappointments.data.AppDatabase
+import com.example.medicalappointments.data.models.SpecialtyEntityModel
 import com.example.medicalappointments.managers.SharedPrefsManager
+import java.util.concurrent.Executors
 
 class ApplicationController: Application() {
     // everything is static inside the companion
@@ -26,13 +28,14 @@ class ApplicationController: Application() {
 
     // DATABASE INITIALISATION
     private fun initDatabase() {
-        appDatabase = Room.databaseBuilder(
-            context = this,
-            klass = AppDatabase::class.java,
-            name = "localDatabase"
-        )
-            //.fallbackToDestructiveMigration() //this wipes out the database in case of failed migration
-            .build()
+        appDatabase = AppDatabase.build(this)
+//        appDatabase = Room.databaseBuilder(
+//            context = this,
+//            klass = AppDatabase::class.java,
+//            name = "localDatabase"
+//        )
+//            .fallbackToDestructiveMigration() //this wipes out the database in case of failed migration
+//            .build()
     }
 
     val sharedPrefs: SharedPreferences by lazy {

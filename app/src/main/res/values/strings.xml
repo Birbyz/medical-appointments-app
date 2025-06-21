@@ -38,4 +38,10 @@
     <string name="additional_notes">Additional notes</string>
     <string name="select_date_and_time">Select date and time</string>
     <string name="send_appointment">Send appointment</string>
+    <string name="i_am_a_doctor">I am a doctor</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last name</string>
+    <string name="specialty">Specialty</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="years_of_experience">Years of experience</string>
 </resources>

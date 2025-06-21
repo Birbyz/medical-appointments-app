@@ -9,7 +9,7 @@ import com.example.medicalappointments.data.models.DoctorEntityModel
 @Dao
 interface DoctorDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertDoctor(doctor: DoctorEntityModel): Long
+    suspend fun insert(doctor: DoctorEntityModel): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertDoctors(doctors: List<DoctorEntityModel>): List<Long>
