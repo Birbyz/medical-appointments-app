@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_navigation_appointments"
             app:destination="@id/navigation_appointments" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment2" />
     </fragment>
     <fragment
         android:id="@+id/appointmentsFragment"
@@ -41,4 +44,8 @@
     <include app:graph="@navigation/navigation_patients" />
     <include app:graph="@navigation/navigation_doctors" />
     <include app:graph="@navigation/navigation_appointments" />
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.medicalappointments.ui.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

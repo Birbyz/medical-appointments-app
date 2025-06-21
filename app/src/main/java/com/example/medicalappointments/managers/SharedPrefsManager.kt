@@ -13,6 +13,10 @@ object SharedPrefsManager {
         }
     }
 
+    fun clearAuthToken() {
+        sharedPrefs?.edit()?.remove(KEY_AUTH_TOKEN)?.apply()
+    }
+
     fun getAuthToken(): String? = sharedPrefs?.getString(KEY_AUTH_TOKEN, null)
 
     private val sharedPrefs

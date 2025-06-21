@@ -35,16 +35,14 @@
 
 <!--        PASSWORD -->
 
-            <EditText
-                android:id="@+id/edt_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:layout_marginTop="@dimen/default_space"
-                android:hint="@string/write_your_password_here"
-                />
-
-
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginTop="@dimen/default_space"
+            android:hint="@string/write_your_password_here"
+        />
 
 <!--        BUTTON  -->
         <Button

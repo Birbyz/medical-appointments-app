@@ -66,7 +66,7 @@ class LoginFragment : Fragment() {
 
         val hashedPassword = hashPassword(password)
         Log.d("Login", "Input email: '$email'")
-        Log.d("Login", "Input password: '$password'")
+
         // LOGIN PROCESS
         viewLifecycleOwner.lifecycleScope.launch {
             try {
