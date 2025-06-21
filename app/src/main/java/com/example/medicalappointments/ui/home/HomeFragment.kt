@@ -1,6 +1,5 @@
 package com.example.medicalappointments.ui.home
 
-import com.example.medicalappointments.data.models.Doctor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

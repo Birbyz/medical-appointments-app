@@ -7,11 +7,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.medicalappointments.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -19,9 +24,12 @@ class AddAppointmentsFragment: Fragment() {
     private lateinit var titleField: EditText
     private lateinit var dateTimeField: EditText
     private lateinit var descriptionField: EditText
+    private lateinit var specialtyField: Spinner
     private lateinit var categoryField: Spinner
     private lateinit var doctorField: Spinner
     private lateinit var submitButton: Button
+
+    //private val specialties =
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +47,21 @@ class AddAppointmentsFragment: Fragment() {
         descriptionField = view.findViewById<EditText>(R.id.et_appointment_description)
         submitButton = view.findViewById<Button>(R.id.btn_submit_appointment)
 
+        setupSpinners()
         setupDateTimePicker()
+    }
+
+    private fun setupSpinners() {
+        // SPECIALTY SPINNERS
+        setupSpecialtySpinner()
+    }
+
+    private fun setupSpecialtySpinner() {
+        lifecycleScope.launch {
+            val specialties = withContext(Dispatchers.IO) {
+                //val entities = Specia
+            }
+        }
     }
 
     private fun setupDateTimePicker() {

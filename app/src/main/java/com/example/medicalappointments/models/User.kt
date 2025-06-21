@@ -4,11 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity
-data class UserModel (
-    @PrimaryKey
-    val id: String,
+data class User (
+    val id: Long,
     val email: String,
+    val password: String,
     @SerializedName("first_name")
     val firstName: String,
     @SerializedName("last_name")

@@ -1,6 +1,5 @@
 package com.example.medicalappointments.data
 
-import com.example.medicalappointments.data.models.Doctor
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -8,23 +7,25 @@ import com.example.medicalappointments.data.dao.AppointmentDAO
 import com.example.medicalappointments.data.dao.CategoryDAO
 import com.example.medicalappointments.data.dao.DoctorDAO
 import com.example.medicalappointments.data.dao.PatientDAO
+import com.example.medicalappointments.data.dao.SpecialtyDAO
 import com.example.medicalappointments.data.dao.UserDAO
 import com.example.medicalappointments.data.models.AppointmentEntityModel
 import com.example.medicalappointments.data.models.CategoryEntityModel
-import com.example.medicalappointments.models.Appointment
-import com.example.medicalappointments.models.Category
-import com.example.medicalappointments.models.Patient
-import com.example.medicalappointments.models.UserModel
+import com.example.medicalappointments.data.models.DoctorEntityModel
+import com.example.medicalappointments.data.models.SpecialtyEntityModel
+import com.example.medicalappointments.data.models.UserEntityModel
+import com.example.medicalappointments.models.PatientEntityModel
 
 @Database(
     entities = [
         AppointmentEntityModel::class,
-        UserModel::class,
-        Patient::class,
-        Doctor:: class,
-        CategoryEntityModel:: class
+        UserEntityModel::class,
+        PatientEntityModel::class,
+        DoctorEntityModel:: class,
+        CategoryEntityModel:: class,
+        SpecialtyEntityModel:: class
     ],
-    version = 6
+    version = 7
 )
 
 @TypeConverters(
@@ -36,4 +37,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract val patientDAO: PatientDAO
     abstract val doctorDAO: DoctorDAO
     abstract val categoryDAO: CategoryDAO
+    abstract val specialtyDAO: SpecialtyDAO
 }

@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalappointments.R
+import com.example.medicalappointments.data.models.UserEntityModel
 import com.example.medicalappointments.models.Appointment
 import com.example.medicalappointments.utils.extensions.getAge
 import com.example.medicalappointments.utils.extensions.logErrorMessage
+import java.time.LocalDate
 
-class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(
-    AppointmentDiffCallback()
-) {
+class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(AppointmentDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -63,14 +63,15 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
 //            Appointment info
             title.text = appointment.title
             description.text = appointment.description
+
             val formatter = java.time.format.DateTimeFormatter.ofPattern("dd MMM YYYY, HH:MM")
             date.text = appointment.date.format(formatter)
 
 //            Patient info
-            val patient = appointment.patient.user
-            patientName.text = "${patient.firstName} ${patient.lastName}"
+            val patient = appointment.patient
+            patientName.text = "${patient.user.firstName} ${patient.user.lastName}"
 
-            val age = appointment.patient.birthdate.getAge()
+            val age = patient.birthdate.getAge()
             patientBirthdate.text = context.getString(R.string.label_age, age)
         }
     }

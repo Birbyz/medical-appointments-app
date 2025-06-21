@@ -1,5 +1,6 @@
 package com.example.medicalappointments.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medicalappointments.R
-import com.example.medicalappointments.data.models.getDisplayName
-import com.example.medicalappointments.models.DoctorModel
+import com.example.medicalappointments.models.Doctor
+import com.example.medicalappointments.models.User
 
-class DoctorsAdapter: ListAdapter<DoctorModel, DoctorsAdapter.DoctorViewHolder>(DoctorsDiffCallback()) {
+class DoctorsAdapter: ListAdapter<Doctor, DoctorsAdapter.DoctorViewHolder>(DoctorsDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -39,29 +40,30 @@ class DoctorsAdapter: ListAdapter<DoctorModel, DoctorsAdapter.DoctorViewHolder>(
         private val email = itemView.findViewById<TextView>(R.id.tv_email)
         private val specialty = itemView.findViewById<TextView>(R.id.tv_specialty)
 
-        fun bind(model: DoctorModel) {
-            val fullNameVal = "${model.user.firstName} ${model.user.lastName}"
+        @SuppressLint("SetTextI18n")
+        fun bind(model: Doctor) {
+            val user = model.user
 
-            fullName.text = fullNameVal
-            email.text = model.user.email
+            fullName.text = "${user.firstName} ${user.lastName}"
+            email.text = user.email
             yearsOfExperience.text = model.yearsOfExperience.toString()
-            specialty.text = model.specialty.getDisplayName(itemView.context)
+            specialty.text = model.specialty.name
 
             Glide.with(avatar.context)
-                .load(model.user.avatar)
+                .load(user.avatar)
                 .into(avatar)
         }
     }
 }
 
-private class DoctorsDiffCallback: DiffUtil.ItemCallback<DoctorModel>(){
+private class DoctorsDiffCallback: DiffUtil.ItemCallback<Doctor>(){
     override fun areItemsTheSame(
-        oldItem: DoctorModel,
-        newItem: DoctorModel
+        oldItem: Doctor,
+        newItem: Doctor
     ): Boolean = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: DoctorModel,
-        newItem: DoctorModel
+        oldItem: Doctor,
+        newItem: Doctor
     ): Boolean = oldItem == newItem
 }

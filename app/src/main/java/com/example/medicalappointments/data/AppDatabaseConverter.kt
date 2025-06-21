@@ -11,10 +11,10 @@ class AppDatabaseConverter {
 
     // TRANSFORM A DATA TYPE INTO A DATA STRUCTURE
     @TypeConverter
-    fun categoryToInt(category: Category): Int = category.id
+    fun categoryToInt(category: Category): Long = category.id
 
     @TypeConverter
-    fun intToCategory(id: Int): Category = Category.fromId(id)
+    fun intToCategory(id: Long): Category = Category.fromId(id)
 
 //  LOCAL DATE CONVERTERS
     @TypeConverter

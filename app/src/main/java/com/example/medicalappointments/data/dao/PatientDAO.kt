@@ -5,12 +5,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.medicalappointments.models.Patient
+import com.example.medicalappointments.models.PatientEntityModel
 
 @Dao
 interface PatientDAO {
     //INSERT A LIST OF PATIENTS
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertPatients(patients: List<Patient>)
+    suspend fun insertPatients(patients: List<PatientEntityModel>)
 
     //INSERT ONE PATIENT
 //    @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -18,5 +19,5 @@ interface PatientDAO {
 
     // GET ALL PATIENTS
     @Query("SELECT * FROM patients")
-    suspend fun getAll(): List<Patient>
+    suspend fun getAll(): List<PatientEntityModel>
 }

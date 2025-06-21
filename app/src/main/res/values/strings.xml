@@ -37,4 +37,5 @@
     <string name="dd_mm_yyyy_hh_mm">(DD/MM/YYYY) HH:MM</string>
     <string name="additional_notes">Additional notes</string>
     <string name="select_date_and_time">Select date and time</string>
+    <string name="send_appointment">Send appointment</string>
 </resources>

@@ -4,8 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDate
 
-data class Patient (
+@Entity(tableName = "patients")
+data class PatientEntityModel (
+    @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val user: User,
+    val userId: Long,
     var birthdate: LocalDate
 )

@@ -13,7 +13,7 @@ import com.example.medicalappointments.R
 import com.example.medicalappointments.adapters.PatientsAdapter
 import com.example.medicalappointments.data.repositories.PatientRepository
 import com.example.medicalappointments.models.Patient
-import com.example.medicalappointments.models.UserModel
+import com.example.medicalappointments.models.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -38,9 +38,6 @@ class PatientsFragment: Fragment() {
             this.layoutManager = LinearLayoutManager(this.context)
         }
 
-        // INSERT
-        insertDummyPatient()
-
         //GET PATIENTS FROM DB
         getPatientsFromDatabase()
     }
@@ -48,71 +45,10 @@ class PatientsFragment: Fragment() {
     private fun getPatientsFromDatabase() {
         viewLifecycleOwner.lifecycleScope.launch {
             val result = withContext(Dispatchers.IO) {
-                PatientRepository.getAllPatients()
+                PatientRepository.getAll()
             }
 
-            adapter.submitList(result)
+//            adapter.submitList(result)
         }
     }
-
-    private fun insertDummyPatient() {
-        // dummy data
-        val patients = listOf(
-            Patient(
-                user = UserModel(
-                    id = "u001",
-                    email = "john.doe@example.com",
-                    firstName = "John",
-                    lastName = "Doe",
-                    avatar = "https://avatar.iran.liara.run/public"
-                ),
-                birthdate = LocalDate.of(2001, 10, 25)
-            ),
-            Patient(
-                user = UserModel(
-                    id = "u002",
-                    email = "jane.smith@example.com",
-                    firstName = "Jane",
-                    lastName = "Smith",
-                    avatar = "https://avatar.iran.liara.run/public"
-                ),
-                birthdate = LocalDate.of(1994, 5, 12)
-            ),
-            Patient(
-                user = UserModel(
-                    id = "u003",
-                    email = "bob.miller@example.com",
-                    firstName = "Bob",
-                    lastName = "Miller",
-                    avatar = "https://avatar.iran.liara.run/public"
-                ),
-                birthdate = LocalDate.of(1984, 1, 3)
-            ),
-            Patient(
-                user = UserModel(
-                    id = "u004",
-                    email = "alice.wilson@example.com",
-                    firstName = "Alice",
-                    lastName = "Wilson",
-                    avatar = "https://avatar.iran.liara.run/public"
-                ),
-                birthdate = LocalDate.of(1997, 8, 19)
-            ),
-            Patient(
-                user = UserModel(
-                    id = "u005",
-                    email = "michael.brown@example.com",
-                    firstName = "Michael",
-                    lastName = "Brown",
-                    avatar = "https://avatar.iran.liara.run/public"
-                ),
-                birthdate = LocalDate.of(1989, 11, 7)
-            )
-        )
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            ApplicationController.instance?.appDatabase?.patientDAO?.insertPatients(patients)
-        }
-    }
-
 }

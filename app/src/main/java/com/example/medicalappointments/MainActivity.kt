@@ -9,7 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.medicalappointments.data.models.SpecialtyType
 
 
 class MainActivity : AppCompatActivity() {
@@ -74,9 +73,5 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ControllerActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    private fun changeDirection(){
-        findViewById<TextView>(R.id.textView2).text = getString(SpecialtyType.entries.random().specialty)
     }
 }

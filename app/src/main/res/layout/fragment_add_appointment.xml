@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,9 +26,9 @@
             android:inputType="textCapSentences"
             android:paddingVertical="@dimen/paragraph_space"/>
 
-        <!--    CATEGORY SPINNER-->
+<!--        DOCTOR SPECIALTY SPINNER-->
         <Spinner
-            android:id="@+id/spinner_category"
+            android:id="@+id/spinner_specialty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_space"
@@ -42,6 +41,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_space"
             android:paddingVertical="@dimen/paragraph_space" />
+
+        <!--    CATEGORY SPINNER-->
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_space"
+            android:paddingVertical="@dimen/paragraph_space" />
+
+
 
         <!--    DATE SELECTOR -->
         <EditText
@@ -74,7 +83,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/default_space"
             android:paddingHorizontal="50dp"
-            tools:text="Send appointment" />
+            android:text="@string/send_appointment" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

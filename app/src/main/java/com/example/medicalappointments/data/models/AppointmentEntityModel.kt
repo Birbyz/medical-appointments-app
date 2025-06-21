@@ -14,12 +14,10 @@ data class AppointmentEntityModel (
     val id: Long = 0,
     val title: String,
     val description: String,
-    @Embedded(prefix = "patient_")
-    val patient: Patient,
-    @Embedded(prefix = "doctor_")
-    val doctor: Doctor,
+    val patientId: Long,
+    val doctorId: Long,
     val date: LocalDateTime,
-    val category: Category
+    val categoryId: Long
 )
 
 

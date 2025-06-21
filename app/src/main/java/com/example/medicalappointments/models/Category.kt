@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.medicalappointments.R
 
 enum class Category(
-    val id: Int,
+    val id: Long,
     val nameRes: Int,      // referință la string din res/values/strings.xml
     val iconRes: Int       // referință la drawable din res/drawable
 ) {
@@ -43,6 +43,6 @@ enum class Category(
     fun getDisplayName(context: Context): String = context.getString(nameRes)
 
     companion object {
-        fun fromId(id: Int): Category = entries.find { it.id == id } ?: UNKNOWN
+        fun fromId(id: Long): Category = entries.find { it.id == id } ?: UNKNOWN
     }
 }
