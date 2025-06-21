@@ -59,11 +59,21 @@ abstract class AppDatabase: RoomDatabase() {
                         super.onOpen(db)
                         Executors.newSingleThreadExecutor().execute {
                             val instance = ApplicationController.instance?.appDatabase
-                            val dao = instance?.specialtyDAO
+
+                            val specialtyDao = instance?.specialtyDAO
+                            val categoryDao = instance?.categoryDAO
+
                             runBlocking {
-                                val existing = dao?.getAll()
-                                if (existing.isNullOrEmpty()) {
-                                    dao?.insertAll(SpecialtyEntityModel.defaultSpecialtySeed())
+                                val existingSpecialties = specialtyDao?.getAll()
+                                if (existingSpecialties.isNullOrEmpty()) {
+                                    specialtyDao?.insertAll(SpecialtyEntityModel.defaultSpecialtySeed())
+                                }
+
+                                val existingCategories = categoryDao?.getAll()
+                                if (existingCategories.isNullOrEmpty()) {
+                                    categoryDao?.insertAll(
+                                        CategoryEntityModel.defaultCategorySeed(context)
+                                    )
                                 }
                             }
                         }

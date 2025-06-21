@@ -14,9 +14,8 @@ import com.example.medicalappointments.data.models.UserEntityModel
 import com.example.medicalappointments.models.Appointment
 import com.example.medicalappointments.utils.extensions.getAge
 import com.example.medicalappointments.utils.extensions.logErrorMessage
-import java.time.LocalDate
 
-class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(AppointmentDiffCallback()) {
+class AppointmentsAdapter(users: List<UserEntityModel>) : ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(AppointmentDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

@@ -1,15 +1,21 @@
 package com.example.medicalappointments.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.medicalappointments.R
+import com.example.medicalappointments.data.repositories.PatientRepository
 import com.example.medicalappointments.managers.SharedPrefsManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -23,30 +29,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.btn_go_to_users).setOnClickListener {
-            goToUsers()
+        val userId = SharedPrefsManager.getUserIdFromToken()
+        Log.i("Login", "USER ID: $userId")
+
+        lifecycleScope.launch {
+            val isPatient = withContext(Dispatchers.IO) {
+                PatientRepository.getAll().any { it.userId == userId }
+            }
+
+            if (isPatient) {
+                showPatientUI(view)
+            } else { showDoctorUI(view) }
         }
 
-        view.findViewById<Button>(R.id.btn_go_to_patients).setOnClickListener {
-            goToPatients()
+        view.findViewById<Button>(R.id.btn_logout).apply {
+            visibility = View.VISIBLE
+            setOnClickListener { logout() }
         }
-
-        view.findViewById<Button>(R.id.btn_go_to_doctors).setOnClickListener {
-            goToDoctors()
-        }
-
-        view.findViewById<Button>(R.id.btn_go_to_appointments).setOnClickListener {
-            goToAppointments()
-        }
-
-        view.findViewById<Button>(R.id.btn_logout).setOnClickListener {
-            logout()
-        }
-    }
-
-    fun goToUsers() {
-        val action = HomeFragmentDirections.actionHomeFragmentToNavigationUsers()
-        findNavController().navigate(action)
     }
 
     fun goToPatients() {
@@ -71,5 +70,28 @@ class HomeFragment : Fragment() {
 
         val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
         findNavController().navigate(action)
+    }
+
+    private fun showPatientUI(view: View) {
+        view.findViewById<Button>(R.id.btn_go_to_doctors).apply {
+            visibility = View.VISIBLE
+            setOnClickListener { goToDoctors() }
+        }
+
+        view.findViewById<Button>(R.id.btn_go_to_appointments).apply {
+            visibility = View.VISIBLE
+            setOnClickListener { goToAppointments() }
+        }
+    }
+
+    private fun showDoctorUI(view: View) {
+        view.findViewById<Button>(R.id.btn_go_to_appointments).apply {
+            visibility = View.VISIBLE
+            setOnClickListener { goToAppointments() }
+        }
+        view.findViewById<Button>(R.id.btn_go_to_patients).apply {
+            visibility = View.VISIBLE
+            setOnClickListener { goToPatients() }
+        }
     }
 }

@@ -37,7 +37,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val email = view.findViewById<EditText>(R.id.edt_email)?.text.toString()
-        val password = view.findViewById<EditText>(R.id.edt_password)?.text.toString()
 
         // REGISTER REDIRECT
         view.findViewById<TextView>(R.id.tv_register).setOnClickListener{
