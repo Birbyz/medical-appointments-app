@@ -51,14 +51,6 @@
             android:visibility="gone"
             android:text="@string/go_to_doctors" />
 
-<!--        BUTTON ADD APPOINTMENTS-->
-        <Button
-            android:id="@+id/btn_go_to_add_appointment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="@string/request_appointment" />
-
 <!--        BUTTON TO APPOINTMENTS-->
         <Button
             android:id="@+id/btn_go_to_appointments"
@@ -66,6 +58,14 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:text="@string/go_to_appointments" />
+
+        <!--        BUTTON TO  DOCTOR APPOINTMENTS-->
+        <Button
+            android:id="@+id/btn_go_to_doctor_appointments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/view_my_appointments" />
 
         <Button
             android:id="@+id/btn_logout"

@@ -63,6 +63,11 @@ class HomeFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    fun goToDoctorAppointments() {
+        val action = HomeFragmentDirections.actionHomeFragmentToDoctorAppointmentsFragment()
+        findNavController().navigate(action)
+    }
+
     private fun logout() {
         SharedPrefsManager.clearAuthToken()
 
@@ -85,9 +90,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun showDoctorUI(view: View) {
-        view.findViewById<Button>(R.id.btn_go_to_appointments).apply {
+        view.findViewById<Button>(R.id.btn_go_to_doctor_appointments).apply {
             visibility = View.VISIBLE
-            setOnClickListener { goToAppointments() }
+            setOnClickListener { goToDoctorAppointments() }
         }
         view.findViewById<Button>(R.id.btn_go_to_patients).apply {
             visibility = View.VISIBLE

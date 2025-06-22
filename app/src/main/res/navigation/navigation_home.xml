@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_doctorAppointmentsFragment"
+            app:destination="@id/doctorAppointmentsFragment" />
     </fragment>
     <fragment
         android:id="@+id/appointmentsFragment"
@@ -47,5 +50,12 @@
     <fragment
         android:id="@+id/loginFragment2"
         android:name="com.example.medicalappointments.ui.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/doctorAppointmentsFragment"
+        android:name="com.example.medicalappointments.ui.appointments.DoctorAppointmentsFragment"
+        android:label="DoctorAppointmentsFragment"
+        tools:layout="@layout/fragment_doctor_appointments"/>
 </navigation>

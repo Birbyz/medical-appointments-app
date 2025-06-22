@@ -85,7 +85,7 @@ class AddAppointmentFragment: Fragment() {
         lifecycleScope.launch {
             specialties = withContext(Dispatchers.IO) {
                 val all = SpecialtyRepository.getAll()
-                Log.i("SPECIALTIES COUNT", "SPECIALTIES = ${all.size}") // sau Log.d(...)
+                Log.i("SPECIALTIES COUNT", "SPECIALTIES = ${all.size}")
                 all.map { it.id to it.name }
             }
 
@@ -229,34 +229,60 @@ class AddAppointmentFragment: Fragment() {
 
     private fun showDateTimePicker() {
         val now = LocalDateTime.now()
+        val today = now.toLocalDate()
+        val minTimeToday = now.toLocalTime().plusMinutes(30)
 
         val datePicker = DatePickerDialog(
             requireContext(),
             { _, year, month, dayOfMonth ->
                 val pickedDate = LocalDate.of(year, month + 1, dayOfMonth)
 
+                // select workdays -> Monday - Saturday
+                if (pickedDate.dayOfWeek.value == 7) {
+                    Toast.makeText(requireContext(), "Appointments are not available on Sundays", Toast.LENGTH_SHORT).show()
+                    return@DatePickerDialog
+                }
+
+                val isToday = pickedDate == today
+                val minHour = if (isToday && minTimeToday.hour >= 8) minTimeToday.hour else 8
+                val minMinute = if (isToday && minTimeToday.minute >= 30) 30 else 0
+
                 val timePicker = TimePickerDialog(
                     requireContext(),
-                    { _, hourOfDay, minute ->
+                    { _, hourOfDay, minuteOfHour ->
+                        // rounded minutes - :00 sau :30
+                        val minute = if (minuteOfHour < 30) 0 else 30
                         val pickedTime = LocalTime.of(hourOfDay, minute)
-                        selectedDateTime = LocalDateTime.of(pickedDate, pickedTime)
 
-                        // Afișăm data și ora în text field
+                        if (pickedTime.hour !in 8..19 || (pickedTime.hour == 20 && pickedTime.minute > 0)) {
+                            Toast.makeText(requireContext(), "Please select a time between 08:00 and 20:00", Toast.LENGTH_SHORT).show()
+                            return@TimePickerDialog
+                        }
+
+                        if (isToday && pickedTime.isBefore(minTimeToday.withSecond(0).withNano(0))) {
+                            Toast.makeText(requireContext(), "Please select a time at least 30 minutes from now", Toast.LENGTH_SHORT).show()
+                            return@TimePickerDialog
+                        }
+
+                        selectedDateTime = LocalDateTime.of(pickedDate, pickedTime)
                         val formatted = selectedDateTime!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                         dateTimeEditText.setText(formatted)
 
                     },
-                    now.hour,
-                    now.minute,
+                    minHour,
+                    minMinute,
                     true
                 )
+
                 timePicker.show()
             },
-            now.year,
-            now.monthValue - 1,
-            now.dayOfMonth
+            today.year,
+            today.monthValue - 1,
+            today.dayOfMonth
         )
 
+        // Blochează datele din trecut
+        datePicker.datePicker.minDate = System.currentTimeMillis()
         datePicker.show()
     }
 }
