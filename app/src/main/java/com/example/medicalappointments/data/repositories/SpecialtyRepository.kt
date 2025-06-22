@@ -4,7 +4,5 @@ import com.example.medicalappointments.ApplicationController
 import com.example.medicalappointments.data.models.SpecialtyEntityModel
 
 object SpecialtyRepository {
-    suspend fun getAll(): List<SpecialtyEntityModel> {
-        return ApplicationController.instance?.appDatabase?.specialtyDAO?.getAll() ?: listOf()
-    }
+    suspend fun getAll() = ApplicationController.instance?.appDatabase?.specialtyDAO?.getAll() ?: listOf()
 }

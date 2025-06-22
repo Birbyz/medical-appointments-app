@@ -65,21 +65,21 @@
             android:layout_height="wrap_content"
             tools:text="Date: DD MM YYYY, HH:MM" />
 
-        <!--        PATIENT NAME -->
+        <!--        DOCTOR NAME -->
         <TextView
-            android:id="@+id/tv_patient_name"
+            android:id="@+id/tv_doctor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="@string/patient_name" />
+            tools:text="Dr. John Doe" />
 
-        <!--        PATIENT AGE-->
+        <!--        DOCTOR SPECIALTY-->
         <TextView
-            android:id="@+id/tv_age_birthdate"
+            android:id="@+id/tv_doctor_specialty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Age (DD/MM/YYYY)" />
+            tools:text="Cardiologist" />
 
 
     </LinearLayout>
@@ -91,6 +91,21 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:text="Notes: Follow-up"
         android:layout_marginTop="@dimen/paragraph_space"/>
+
+    <ImageButton
+        android:id="@+id/btn_delete_appointment"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:shapeAppearanceOverlay="@style/RoundedButtonShape"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/bg_circle_ripple"
+        android:layout_marginTop="@dimen/default_space"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/cancel_appointment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_cancel_btn" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
