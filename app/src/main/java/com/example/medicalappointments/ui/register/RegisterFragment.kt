@@ -41,6 +41,9 @@ class RegisterFragment : Fragment() {
     private var specialtyList: List<Specialty> = emptyList()
     private var selectedAvatarUri: Uri? = null
 
+    private val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
+    private val nameRegex = Regex("^[A-Za-z]{3,32}$")
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,7 +69,7 @@ class RegisterFragment : Fragment() {
         emailInput.setText(args.email)
 
         // deactivate the register button until data is loaded
-        registerButton.isEnabled = false // dezactivat inițial
+        registerButton.isEnabled = false
 
         // pick an avatar from gallery
         avatarPreview.setOnClickListener {
@@ -95,10 +98,48 @@ class RegisterFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // email validation
+            if (!email.matches(emailRegex)) {
+                Toast.makeText(requireContext(), "Invalid email format.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // password validation
+            if (password.length < 5) {
+                Toast.makeText(requireContext(), "Password must be at least 5 characters.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // name validation
+            if (!firstName.matches(nameRegex)) {
+                Toast.makeText(requireContext(), "First name must be 3-32 letters only.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (!lastName.matches(nameRegex)) {
+                Toast.makeText(requireContext(), "Last name must be 3-32 letters only.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // birthdate validation
+            val today = LocalDate.now()
+            val minDate = today.minusYears(65)
+            val maxDate = today.minusYears(18)
+
             val birthdate = try {
                 LocalDate.parse(birthdateText)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Invalid format. Use YYYY-MM-DD.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (birthdate.isBefore(minDate) || birthdate.isAfter(maxDate)) {
+                Toast.makeText(requireContext(), "You must be between 18 and 65 years old.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // years of experience validation
+            if (isDoctorChecked.isChecked && yearsOfExperience > 30) {
+                Toast.makeText(requireContext(), "Years of experience cannot exceed 30.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -115,12 +156,16 @@ class RegisterFragment : Fragment() {
                     return@launch
                 }
 
+                // name format - first letter must be a capital letter
+                val formattedFirstName = firstName.lowercase().replaceFirstChar { it.uppercase() }
+                val formattedLastName = lastName.lowercase().replaceFirstChar { it.uppercase() }
+
                 val newUser = User(
                     id = 0L,
                     email = email,
                     password = hashedPassword,
-                    firstName = firstName,
-                    lastName = lastName,
+                    firstName = formattedFirstName,
+                    lastName = formattedLastName,
                     avatar = avatar
                 )
 

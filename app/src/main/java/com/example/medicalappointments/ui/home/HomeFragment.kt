@@ -74,7 +74,6 @@ class HomeFragment : Fragment() {
 
         Toast.makeText(requireContext(), "You have been logged out.", Toast.LENGTH_SHORT).show()
 
-        val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
         findNavController().navigate(
             R.id.loginFragment,
             null,
