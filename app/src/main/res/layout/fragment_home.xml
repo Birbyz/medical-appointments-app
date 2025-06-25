@@ -36,12 +36,12 @@
             android:visibility="gone"/>
 
 <!--        BUTTON TO PATIENTS-->
-        <Button
-            android:id="@+id/btn_go_to_patients"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="@string/go_to_patients" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_go_to_patients"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            android:text="@string/go_to_patients" />-->
 
 <!--        BUTTON TO DOCTORS-->
         <Button

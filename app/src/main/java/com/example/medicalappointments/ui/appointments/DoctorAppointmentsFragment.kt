@@ -1,10 +1,12 @@
 package com.example.medicalappointments.ui.appointments
 
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +32,8 @@ class DoctorAppointmentsFragment: Fragment() {
     private var patients: List<PatientEntityModel> = emptyList()
     private var users: List<UserEntityModel> = emptyList()
 
+    private var orderedAppointments: MutableList<AppointmentEntityModel> = mutableListOf()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +44,22 @@ class DoctorAppointmentsFragment: Fragment() {
         Log.d("DEBUG_FRAGMENT", "DoctorAppointmentsFragment was loaded")
 
         super.onViewCreated(view, savedInstanceState)
+
+//        sort buttons
+        view.findViewById<ImageButton>(R.id.btn_sort_asc).setOnClickListener {
+            orderedAppointments.sortBy { it.date }
+            adapter.submitData(orderedAppointments.toList(), patients, users)
+        }
+
+        view.findViewById<ImageButton>(R.id.btn_sort_desc).setOnClickListener {
+            orderedAppointments.sortByDescending { it.date }
+            adapter.submitData(orderedAppointments.toList(), patients, users)
+        }
+
+        view.findViewById<ImageButton>(R.id.btn_sort_reset).setOnClickListener {
+            orderedAppointments = originalAppointments.toMutableList()
+            adapter.submitData(orderedAppointments.toList(), patients, users)
+        }
 
         view.findViewById<RecyclerView>(R.id.rv_doctor_appointments).apply {
             this.adapter = this@DoctorAppointmentsFragment.adapter
@@ -60,6 +80,9 @@ class DoctorAppointmentsFragment: Fragment() {
             originalAppointments = withContext(Dispatchers.IO) {
                 AppointmentRepository.getAll().filter { it.doctorId == doctor.id }
             }
+
+            // prepare the appointments list for sorting
+            orderedAppointments = originalAppointments.toMutableList()
 
             patients = withContext(Dispatchers.IO) { PatientRepository.getAll() }
             users = withContext(Dispatchers.IO) { UserRepository.getAll() }

@@ -48,10 +48,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun goToPatients() {
-        val action = HomeFragmentDirections.actionHomeFragmentToNavigationPatients()
-        findNavController().navigate(action)
-    }
+//    fun goToPatients() {
+//        val action = HomeFragmentDirections.actionHomeFragmentToNavigationPatients()
+//        findNavController().navigate(action)
+//    }
 
     fun goToDoctors() {
         val action = HomeFragmentDirections.actionHomeFragmentToNavigationDoctors()
@@ -94,9 +94,9 @@ class HomeFragment : Fragment() {
             visibility = View.VISIBLE
             setOnClickListener { goToDoctorAppointments() }
         }
-        view.findViewById<Button>(R.id.btn_go_to_patients).apply {
-            visibility = View.VISIBLE
-            setOnClickListener { goToPatients() }
-        }
+//        view.findViewById<Button>(R.id.btn_go_to_patients).apply {
+//            visibility = View.VISIBLE
+//            setOnClickListener { goToPatients() }
+//        }
     }
 }
