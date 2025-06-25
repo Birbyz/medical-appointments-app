@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.medicalappointments.R
 import com.example.medicalappointments.data.repositories.PatientRepository
@@ -74,7 +75,13 @@ class HomeFragment : Fragment() {
         Toast.makeText(requireContext(), "You have been logged out.", Toast.LENGTH_SHORT).show()
 
         val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
-        findNavController().navigate(action)
+        findNavController().navigate(
+            R.id.loginFragment,
+            null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.navigation_home, true) // empty the screen stack
+                .build()
+        )
     }
 
     private fun showPatientUI(view: View) {
