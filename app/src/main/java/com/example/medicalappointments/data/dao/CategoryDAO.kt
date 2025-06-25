@@ -11,6 +11,9 @@ interface CategoryDAO {
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(category: CategoryEntityModel)
 
-//    @Query("SELECT * FROM CategoryEntityModel")
-//    suspend fun getCategoriesWithAppointments(): List<CategoryWithAppointmentsEntityModel>
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(category: List<CategoryEntityModel>)
+
+    @Query("SELECT * FROM categories")
+    suspend fun getAll(): List<CategoryEntityModel>
 }

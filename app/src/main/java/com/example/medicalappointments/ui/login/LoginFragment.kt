@@ -11,12 +11,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.medicalappointments.BuildConfig
 import com.example.medicalappointments.R
+import com.example.medicalappointments.data.repositories.UserRepository
 import com.example.medicalappointments.managers.SharedPrefsManager
-import com.example.medicalappointments.networking.repository.AuthenticationRepository
-import com.example.medicalappointments.networking.repository.UserRepository
-import com.example.medicalappointments.utils.extensions.logErrorMessage
 import com.example.medicalappointments.utils.extensions.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,7 +34,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val email = view.findViewById<EditText>(R.id.edt_email)?.text.toString()
-        val password = view.findViewById<EditText>(R.id.edt_password)?.text.toString()
 
         // REGISTER REDIRECT
         view.findViewById<TextView>(R.id.tv_register).setOnClickListener{

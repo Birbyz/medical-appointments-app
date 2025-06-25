@@ -11,12 +11,13 @@
         android:label="AppointmentsFragment"
         tools:layout="@layout/fragment_appointments">
         <action
-            android:id="@+id/action_appointmentsFragment_to_addAppointmentsFragment"
-            app:destination="@id/addAppointmentsFragment" />
+            android:id="@+id/action_appointmentsFragment_to_addAppointmentFragment"
+            app:destination="@id/addAppointmentFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addAppointmentsFragment"
-        android:name="com.example.medicalappointments.ui.forms.AddAppointmentsFragment"
-        android:label="AddAppointmentsFragment"
-        tools:layout="@layout/fragment_add_appointment"/>
+        android:id="@+id/addAppointmentFragment"
+        tools:layout="@layout/fragment_add_appointment"
+        android:name="com.example.medicalappointments.ui.appointments.AddAppointmentFragment"
+        android:label="AddAppointmentFragment" />
+
 </navigation>

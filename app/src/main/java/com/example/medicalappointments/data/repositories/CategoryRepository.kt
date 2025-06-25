@@ -17,4 +17,6 @@ object CategoryRepository {
 //    suspend fun getAllCategoriesWithAppointments(): List<CategoryWithAppointmentsEntityModel> {
 //        return ApplicationController.instance?.appDatabase?.categoryDAO?.getCategoriesWithAppointments() ?: listOf()
 //    }
+
+    suspend fun getAll(): List<CategoryEntityModel> = ApplicationController.instance?.appDatabase?.categoryDAO?.getAll() ?: emptyList()
 }

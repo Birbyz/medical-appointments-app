@@ -21,4 +21,10 @@ object SharedPrefsManager {
 
     private val sharedPrefs
         get() = ApplicationController.instance?.sharedPrefs
+
+    fun getUserIdFromToken(): Long? {
+        val token = getAuthToken() ?: return null
+
+        return token.split("_").getOrNull(1)?.toLongOrNull()
+    }
 }

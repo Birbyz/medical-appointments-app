@@ -22,4 +22,11 @@ object AppointmentRepository {
     suspend fun insertAll(appointments: List<AppointmentEntityModel>) {
         ApplicationController.instance?.appDatabase?.appointmentDAO?.insertAppointments(appointments)
     }
+
+    suspend fun delete(id: Long) {
+        val appointment = ApplicationController.instance?.appDatabase?.appointmentDAO?.getById(id)
+        if (appointment != null) {
+            ApplicationController.instance?.appDatabase?.appointmentDAO?.deleteById(appointment.id)
+        }
+    }
 }

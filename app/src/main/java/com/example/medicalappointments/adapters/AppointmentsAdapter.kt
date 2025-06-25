@@ -1,9 +1,11 @@
 package com.example.medicalappointments.adapters
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -14,9 +16,9 @@ import com.example.medicalappointments.data.models.UserEntityModel
 import com.example.medicalappointments.models.Appointment
 import com.example.medicalappointments.utils.extensions.getAge
 import com.example.medicalappointments.utils.extensions.logErrorMessage
-import java.time.LocalDate
 
-class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(AppointmentDiffCallback()) {
+class AppointmentsAdapter : ListAdapter<Appointment, AppointmentsAdapter.AppointmentViewHolder>(AppointmentDiffCallback()) {
+    var onDeleteClick: ((Appointment) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -45,11 +47,13 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
         private val title: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_title)
         private val date: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_date)
         // patient data
-        private val patientName: TextView = itemView.findViewById<TextView>(R.id.tv_patient_name)
-        private val patientBirthdate: TextView = itemView.findViewById<TextView>(R.id.tv_age_birthdate)
+        private val doctorName: TextView = itemView.findViewById<TextView>(R.id.tv_doctor_name)
+        private val doctorSpecialty: TextView = itemView.findViewById<TextView>(R.id.tv_doctor_specialty)
         //appointment data
         private val description: TextView = itemView.findViewById<TextView>(R.id.tv_appointment_description)
 
+        // delete appointment
+        private val deleteButton: ImageButton = itemView.findViewById(R.id.btn_delete_appointment)
 
         @SuppressLint("SetTextI18n", "WeekBasedYear")
         fun bind(appointment: Appointment) {
@@ -67,12 +71,22 @@ class AppointmentsAdapter: ListAdapter<Appointment, AppointmentsAdapter.Appointm
             val formatter = java.time.format.DateTimeFormatter.ofPattern("dd MMM YYYY, HH:MM")
             date.text = appointment.date.format(formatter)
 
-//            Patient info
-            val patient = appointment.patient
-            patientName.text = "${patient.user.firstName} ${patient.user.lastName}"
+//            Doctor info
+            val doctor = appointment.doctor
+            doctorName.text = "${doctor.user.firstName} ${doctor.user.lastName}"
+            doctorSpecialty.text = doctor.specialty.name
 
-            val age = patient.birthdate.getAge()
-            patientBirthdate.text = context.getString(R.string.label_age, age)
+            // delete function -> show warning then execute
+            deleteButton.setOnClickListener {
+                AlertDialog.Builder(context)
+                    .setTitle("Cancel Appointment")
+                    .setMessage("Are you sure you want to cancel this appointment?")
+                    .setPositiveButton("Yes") { _, _ ->
+                        onDeleteClick?.invoke(appointment)
+                    }
+                    .setNegativeButton("No", null)
+                    .show()
+            }
         }
     }
 }

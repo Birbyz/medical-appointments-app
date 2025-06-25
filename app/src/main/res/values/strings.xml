@@ -45,4 +45,14 @@
     <string name="birthdate">Birthdate</string>
     <string name="years_of_experience">Years of experience</string>
     <string name="logout">Logout</string>
+    <string name="request_appointment">Request appointment</string>
+    <string name="select_specialty">Select Specialty</string>
+    <string name="choose_a_doctor">Choose a doctor</string>
+    <string name="select_appointment_s_category">Select appointment\'s category</string>
+    <string name="cancel_appointment">Cancel appointment</string>
+    <string name="date_asc">Date: ASC</string>
+    <string name="date_des">Date: DES</string>
+    <string name="sort_date">Sort date:</string>
+    <string name="reset">Reset</string>
+    <string name="view_my_appointments">View my appointments</string>
 </resources>

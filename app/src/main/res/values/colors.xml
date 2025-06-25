@@ -5,4 +5,6 @@
 
 <!--    login   -->
     <color name="soft_red">#FFFFF5F5</color>
+    <color name="light_gray">#F2F2F2</color>
+    <color name="main_blue">#0067F6</color>
 </resources>

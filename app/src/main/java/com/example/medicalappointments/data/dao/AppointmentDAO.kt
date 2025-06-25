@@ -17,4 +17,10 @@ interface AppointmentDAO {
 
     @Query("SELECT * FROM appointments")
     suspend fun getAll(): List<AppointmentEntityModel>
+
+    @Query("SELECT * FROM appointments WHERE id = :id")
+    fun getById(id: Long): AppointmentEntityModel?
+
+    @Query("DELETE FROM appointments WHERE id = :id")
+    fun deleteById(id: Long)
 }

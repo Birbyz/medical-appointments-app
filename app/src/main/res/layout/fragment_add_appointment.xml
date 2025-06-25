@@ -26,6 +26,16 @@
             android:inputType="textCapSentences"
             android:paddingVertical="@dimen/paragraph_space"/>
 
+        <!-- Specialty Label -->
+        <TextView
+            android:id="@+id/label_specialty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_specialty"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp" />
+
 <!--        DOCTOR SPECIALTY SPINNER-->
         <Spinner
             android:id="@+id/spinner_specialty"
@@ -34,6 +44,16 @@
             android:layout_marginTop="@dimen/default_space"
             android:paddingVertical="@dimen/paragraph_space" />
 
+        <!-- Doctor  Label -->
+        <TextView
+            android:id="@+id/label_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_a_doctor"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp" />
+
         <!--    DOCTOR SPINNER-->
         <Spinner
             android:id="@+id/spinner_doctor"
@@ -41,6 +61,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_space"
             android:paddingVertical="@dimen/paragraph_space" />
+
+        <!-- Appointment category Label -->
+        <TextView
+            android:id="@+id/label_appointment_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_appointment_s_category"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp" />
 
         <!--    CATEGORY SPINNER-->
         <Spinner

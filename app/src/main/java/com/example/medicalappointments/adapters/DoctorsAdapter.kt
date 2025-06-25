@@ -37,20 +37,21 @@ class DoctorsAdapter: ListAdapter<Doctor, DoctorsAdapter.DoctorViewHolder>(Docto
         private val avatar: ImageView = itemView.findViewById<ImageView>(R.id.imv_avatar)
         private val fullName: TextView = itemView.findViewById<TextView>(R.id.tv_full_name)
         private val yearsOfExperience = itemView.findViewById<TextView>(R.id.tv_years_of_experience)
-        private val email = itemView.findViewById<TextView>(R.id.tv_email)
         private val specialty = itemView.findViewById<TextView>(R.id.tv_specialty)
+        private val totalAppointments = itemView.findViewById<TextView>(R.id.tv_total_appointments)
 
         @SuppressLint("SetTextI18n")
         fun bind(model: Doctor) {
             val user = model.user
 
-            fullName.text = "${user.firstName} ${user.lastName}"
-            email.text = user.email
-            yearsOfExperience.text = model.yearsOfExperience.toString()
             specialty.text = model.specialty.name
+            fullName.text = "${user.firstName} ${user.lastName}"
+            yearsOfExperience.text = "Experience: ${model.yearsOfExperience} years"
+            totalAppointments.text = "Appointments: ${model.totalAppointments}"
 
-            Glide.with(avatar.context)
+            Glide.with(itemView.context)
                 .load(user.avatar)
+                .placeholder(R.drawable.ic_placeholder_avatar)
                 .into(avatar)
         }
     }
