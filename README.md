@@ -45,19 +45,6 @@ This mobile application helps users manage **medical appointments** efficiently.
 
 ---
 
-## 📌 Notes
-
-- This is a student project for educational purposes.
-- All backend logic is simulated (no real API integration).
-
----
-
-## 📸 Screenshots
-
-_(Insert screenshots here if available)_
-
----
-
 ## 🚀 Future Improvements
 
 - Firebase or REST API integration for real backend support
