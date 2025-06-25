@@ -4,10 +4,12 @@ This mobile application helps users manage **medical appointments** efficiently.
 
 ---
 
-## 👤 Patient Features
-
-- 🔐 **Register & Login**  
+🔐 **Register & Login**  
   Users can register as a Patient or Doctor. Authentication is simulated using local storage (SharedPreferences).
+
+---
+
+## 👤 Patient Features
 
 - 📅 **View My Appointments**  
   Patients can view only their scheduled appointments in a user-friendly list.
